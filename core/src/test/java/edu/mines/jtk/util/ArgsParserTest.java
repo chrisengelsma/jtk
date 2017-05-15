@@ -14,8 +14,6 @@ limitations under the License.
 ****************************************************************************/
 package edu.mines.jtk.util;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertFalse;
