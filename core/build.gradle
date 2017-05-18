@@ -25,9 +25,16 @@ distributions {
 // end::distributions[]
 
 
+// tag::test[]
 test {
-  useTestNG()
+  useTestNG() {
+    options {
+      parallel="methods"
+      threadCount=5
+    }
+  }
 }
+// end::test[]
 
 
 // tag::javadoc[]
@@ -78,7 +85,6 @@ signing {
   sign configurations.archives
 }
 
-/*
 if (project.hasProperty('sonatypeUsername')) {
   uploadArchives {
     repositories {
@@ -120,4 +126,3 @@ if (project.hasProperty('sonatypeUsername')) {
     }
   }
 }
-*/

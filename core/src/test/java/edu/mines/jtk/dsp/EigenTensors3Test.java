@@ -34,10 +34,9 @@ public class EigenTensors3Test {
     testRandom(false,0.1,1.0e-6,1.0e-3);
   }
 
-  @Test
   private void testRandom(
-    boolean compressed, 
-    double errorAngle, double errorValue, double errorTensor) 
+    boolean compressed, double errorAngle,
+    double errorValue, double errorTensor)
   {
     int n1 = 19, n2 = 20, n3 = 21;
     EigenTensors3 et = new EigenTensors3(n1,n2,n3,compressed);

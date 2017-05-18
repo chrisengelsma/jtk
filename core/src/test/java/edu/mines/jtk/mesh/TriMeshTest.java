@@ -201,7 +201,6 @@ public class TriMeshTest {
     //System.out.println("Nodes added/removed = "+nadd+"/"+nremove);
   }
 
-  @Test
   public void benchAddNode() {
     java.util.Random random = new java.util.Random();
     for (int itest=0; itest<3; ++itest) {

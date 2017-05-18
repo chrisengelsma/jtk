@@ -68,7 +68,6 @@ public class EigenTest {
     }
   }
 
-  @Test
   private void check(double[][] a, double[][] v, double[] d) {
     int n = a.length;
     for (int k=0; k<n; ++k) {

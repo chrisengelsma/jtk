@@ -28,9 +28,7 @@ public class EigenTensors2Test {
   public void testRandom() {
     testRandom(0.1,1.0e-6);
   }
-
-  @Test
-  public void testRandom(double errorAngle, double errorCoeff) {
+  private void testRandom(double errorAngle, double errorCoeff) {
     int n1 = 13, n2 = 14;
     EigenTensors2 et = new EigenTensors2(n1,n2);
     for (int i2=0; i2<n2; ++i2) {

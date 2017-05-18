@@ -34,9 +34,7 @@ public class Recursive2ndOrderFilterTest {
     test1(0.00f, 4.00f, 2.00f, 1.80f, 0.81f);
     test1(2.00f, 4.00f, 2.00f, 1.80f, 0.81f);
   }
-
-  @Test
-  public void test1(float b0, float b1, float b2, float a1, float a2) {
+  private void test1(float b0, float b1, float b2, float a1, float a2) {
     int n = 100;
     float[] x,y1,y2;
     x = randfloat(n);
@@ -65,8 +63,7 @@ public class Recursive2ndOrderFilterTest {
     test2(2.00f, 4.00f, 2.00f, 1.80f, 0.81f);
   }
 
-  @Test
-  public void test2(float b0, float b1, float b2, float a1, float a2) {
+  private void test2(float b0, float b1, float b2, float a1, float a2) {
     int n = 20;
     float[][] x,y1,y2;
     x = randfloat(n,n);
@@ -102,8 +99,7 @@ public class Recursive2ndOrderFilterTest {
     test3(2.00f, 4.00f, 2.00f, 1.80f, 0.81f);
   }
 
-  @Test
-  public void test3(float b0, float b1, float b2, float a1, float a2) {
+  private void test3(float b0, float b1, float b2, float a1, float a2) {
     int n = 20;
     float[][][] x,y1,y2;
     x = randfloat(n,n,n);
