@@ -14,15 +14,14 @@ limitations under the License.
 ****************************************************************************/
 package edu.mines.jtk.util;
 
+import org.testng.annotations.Test;
+
 import static edu.mines.jtk.util.ArrayMath.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
 import java.util.Random;
-
-import org.junit.Test;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Tests {@link edu.mines.jtk.util.ArrayMath}.
@@ -1007,10 +1006,8 @@ public class ArrayMathTest {
     assertEq(2L,abs(-2L));
     assertEq(2.0f,abs(-2.0f));
     assertEq(2.0d,abs(-2.0d));
-    assertEquals("abs(float) changed sign of 0",
-                 0, Float.floatToIntBits(abs(0.0f)));
-    assertEquals("abs(double) changed sign of 0",
-                 0, Double.doubleToLongBits(abs(0.0d)));
+    assertEquals(0, Float.floatToIntBits(abs(0.0f)));
+    assertEquals(0, Double.doubleToLongBits(abs(0.0d)));
 
     assertEq(4,max(1,3,4,2));
     assertEq(4L,max(1L,3L,4L,2L));
@@ -1034,6 +1031,86 @@ public class ArrayMathTest {
   private void assertEq(double expected, double actual) {
     double small = 1.0e-12f*max(abs(expected),abs(actual),1.0d);
     assertEquals(expected,actual,small);
+  }
+
+  private void assertEqual(float[] rx, float[] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  private void assertEqual(float[][] rx, float[][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  private void assertEqual(float[][][] rx, float[][][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  private void assertAlmostEqual(float[][][] rx, float[][][] ry) {
+    float tolerance = 100.0f*FLT_EPSILON;
+    assertTrue(equal(tolerance,rx,ry));
+  }
+    private void checkSearch(double[] a, double x) {
+    int n = a.length;
+    int i = binarySearch(a,x);
+    validateSearch(a,x,i);
+    for (int is=-2; is<n+2; ++is) {
+      i = binarySearch(a,x,is);
+      validateSearch(a,x,i);
+    }
+  }
+  private void validateSearch(double[] a, double x, int i) {
+    int n = a.length;
+    if (i>=0) {
+      assertTrue(a[i]==x);
+    } else {
+      i = -(i+1);
+      if (n==0) {
+        assertTrue(i==0);
+      } else if (n<2 || a[0]<a[n-1]) {
+        if (i==0) {
+          assertTrue(x<a[i]);
+        } else if (i==n) {
+          assertTrue(a[i-1]<x);
+        } else {
+          assertTrue(a[i-1]<x && x<a[i]);
+        }
+      } else {
+        if (i==0) {
+          assertTrue(x>a[i]);
+        } else if (i==n) {
+          assertTrue(a[i-1]>x);
+        } else {
+          assertTrue(a[i-1]>x && x>a[i]);
+        }
+      }
+    }
+  }
+  private void sortAndCheck(float[] x) {
+    int n = x.length;
+    float[] x1 = copy(x);
+    for (int k=0; k<n; k+=n/4) {
+      quickPartialSort(k,x1);
+      for (int i=0; i<k; ++i)
+        assertTrue(x1[i]<=x1[k]);
+      for (int i=k; i<n; ++i)
+        assertTrue(x1[k]<=x1[i]);
+    }
+    float[] x2 = copy(x);
+    quickSort(x2);
+    for (int i=1; i<n; ++i)
+      assertTrue(x2[i-1]<=x2[i]);
+    int[] i1 = rampint(0,1,n);
+    for (int k=0; k<n; k+=n/4) {
+      quickPartialIndexSort(k,x,i1);
+      for (int j=0; j<k; ++j)
+        assertTrue(x[i1[j]]<=x[i1[k]]);
+      for (int j=k+1; j<n; ++j)
+        assertTrue(x[i1[k]]<=x[i1[j]]);
+    }
+    int[] i2 = rampint(0,1,n);
+    quickIndexSort(x,i2);
+    for (int j=1; j<n; ++j)
+      assertTrue(x[i2[j-1]]<=x[i2[j]]);
   }
 
   private void assertEqual(float[] rx, float[] ry) {
