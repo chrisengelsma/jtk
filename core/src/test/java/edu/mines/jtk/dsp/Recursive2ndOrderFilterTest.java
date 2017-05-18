@@ -14,8 +14,8 @@ limitations under the License.
 ****************************************************************************/
 package edu.mines.jtk.dsp;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
 
 import static edu.mines.jtk.util.ArrayMath.*;
 
@@ -24,12 +24,9 @@ import static edu.mines.jtk.util.ArrayMath.*;
  * @author Dave Hale, Colorado School of Mines
  * @version 2005.11.22
  */
-public class Recursive2ndOrderFilterTest extends TestCase {
-  public static void main(String[] args) {
-    TestSuite suite = new TestSuite(Recursive2ndOrderFilterTest.class);
-    junit.textui.TestRunner.run(suite);
-  }
+public class Recursive2ndOrderFilterTest {
 
+  @Test
   public void test1() {
     test1(2.00f, 0.00f, 0.00f, 0.90f, 0.00f);
     test1(2.00f, 4.00f, 0.00f, 0.90f, 0.00f);
@@ -38,6 +35,7 @@ public class Recursive2ndOrderFilterTest extends TestCase {
     test1(2.00f, 4.00f, 2.00f, 1.80f, 0.81f);
   }
 
+  @Test
   public void test1(float b0, float b1, float b2, float a1, float a2) {
     int n = 100;
     float[] x,y1,y2;
@@ -58,6 +56,7 @@ public class Recursive2ndOrderFilterTest extends TestCase {
     assertEqual(y1,y2);
   }
 
+  @Test
   public void test2() {
     test2(2.00f, 0.00f, 0.00f, 0.90f, 0.00f);
     test2(2.00f, 4.00f, 0.00f, 0.90f, 0.00f);
@@ -66,6 +65,7 @@ public class Recursive2ndOrderFilterTest extends TestCase {
     test2(2.00f, 4.00f, 2.00f, 1.80f, 0.81f);
   }
 
+  @Test
   public void test2(float b0, float b1, float b2, float a1, float a2) {
     int n = 20;
     float[][] x,y1,y2;
@@ -93,6 +93,7 @@ public class Recursive2ndOrderFilterTest extends TestCase {
     assertEqual(y1,y2);
   }
 
+  @Test
   public void test3() {
     test3(2.00f, 0.00f, 0.00f, 0.90f, 0.00f);
     test3(2.00f, 4.00f, 0.00f, 0.90f, 0.00f);
@@ -101,6 +102,7 @@ public class Recursive2ndOrderFilterTest extends TestCase {
     test3(2.00f, 4.00f, 2.00f, 1.80f, 0.81f);
   }
 
+  @Test
   public void test3(float b0, float b1, float b2, float a1, float a2) {
     int n = 20;
     float[][][] x,y1,y2;
