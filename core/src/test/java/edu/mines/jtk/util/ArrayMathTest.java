@@ -37,7 +37,7 @@ public class ArrayMathTest {
   private static final int COPY=0,REV=1,REVHALF1=2,REVHALF2=3,SORT=4,DITHER=5;
 
   @Test
-  public void testCFloatArrays() {
+  public void testCFloatArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     Cfloat val = new Cfloat(1.0f,-1.0f);
@@ -81,10 +81,19 @@ public class ArrayMathTest {
     assertEquals(4*n1,z1.length);
     assertEquals(4*n1,z2[0].length);
     assertEquals(4*n1,z3[0][0].length);
+
+    crand(z1); crand(z2); crand(z3);
+
+    assertEquals(2*n3,z3.length);
+    assertEquals(2*n2,z2.length);
+    assertEquals(2*n2,z3[0].length);
+    assertEquals(4*n1,z1.length);
+    assertEquals(4*n1,z2[0].length);
+    assertEquals(4*n1,z3[0][0].length);
   }
 
   @Test
-  public void testCDoubleArrays() {
+  public void testCDoubleArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     Cdouble val = new Cdouble(1.0,-1.0);
@@ -128,10 +137,19 @@ public class ArrayMathTest {
     assertEquals(4*n1,z1.length);
     assertEquals(4*n1,z2[0].length);
     assertEquals(4*n1,z3[0][0].length);
+
+    crand(z1); crand(z2); crand(z3);
+
+    assertEquals(2*n3,z3.length);
+    assertEquals(2*n2,z2.length);
+    assertEquals(2*n2,z3[0].length);
+    assertEquals(4*n1,z1.length);
+    assertEquals(4*n1,z2[0].length);
+    assertEquals(4*n1,z3[0][0].length);
   }
 
   @Test
-  public void testDoubleArrays() {
+  public void testDoubleArrayInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     double val = 1.0;
@@ -173,10 +191,18 @@ public class ArrayMathTest {
     assertEquals(2*n1,zd2[0].length);
     assertEquals(2*n1,zd3[0][0].length);
 
+    rand(zd1); rand(zd2); rand(zd3);
+
+    assertEquals(2*n3,zd3.length);
+    assertEquals(2*n2,zd2.length);
+    assertEquals(2*n2,zd3[0].length);
+    assertEquals(2*n1,zd1.length);
+    assertEquals(2*n1,zd2[0].length);
+    assertEquals(2*n1,zd3[0][0].length);
   }
 
   @Test
-  public void testFloatArrays() {
+  public void testFloatArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     float val = 1.0f;
@@ -217,10 +243,19 @@ public class ArrayMathTest {
     assertEquals(2*n1,zf1.length);
     assertEquals(2*n1,zf2[0].length);
     assertEquals(2*n1,zf3[0][0].length);
+
+    rand(zf1); rand(zf2); rand(zf3);
+
+    assertEquals(2*n3,zf3.length);
+    assertEquals(2*n2,zf2.length);
+    assertEquals(2*n2,zf3[0].length);
+    assertEquals(2*n1,zf1.length);
+    assertEquals(2*n1,zf2[0].length);
+    assertEquals(2*n1,zf3[0][0].length);
   }
 
   @Test
-  public void testLongArrays() {
+  public void testLongArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     long val = 1L;
@@ -261,10 +296,19 @@ public class ArrayMathTest {
     assertEquals(2*n1,zl1.length);
     assertEquals(2*n1,zl2[0].length);
     assertEquals(2*n1,zl3[0][0].length);
+
+    rand(zl1); rand(zl2); rand(zl3);
+
+    assertEquals(2*n3,zl3.length);
+    assertEquals(2*n2,zl2.length);
+    assertEquals(2*n2,zl3[0].length);
+    assertEquals(2*n1,zl1.length);
+    assertEquals(2*n1,zl2[0].length);
+    assertEquals(2*n1,zl3[0][0].length);
   }
 
   @Test
-  public void testIntArrays() {
+  public void testIntArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     int val = 1;
@@ -304,10 +348,18 @@ public class ArrayMathTest {
     assertEquals(2*n1,zi2[0].length);
     assertEquals(2*n1,zi3[0][0].length);
 
+    rand(zi1); rand(zi2); rand(zi3);
+
+    assertEquals(2*n3,zi3.length);
+    assertEquals(2*n2,zi2.length);
+    assertEquals(2*n2,zi3[0].length);
+    assertEquals(2*n1,zi1.length);
+    assertEquals(2*n1,zi2[0].length);
+    assertEquals(2*n1,zi3[0][0].length);
   }
 
   @Test
-  public void testShortArrays() {
+  public void testShortArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     short val = (short)1;
@@ -340,7 +392,7 @@ public class ArrayMathTest {
   }
 
   @Test
-  public void testByteArrays() {
+  public void testByteArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
     byte val = (byte)1;
@@ -359,14 +411,10 @@ public class ArrayMathTest {
     assertEquals(n1,zb3[0][0].length);
 
 
-    for (int i3=0; i3<n3; ++i3) {
-      for (int i2=0; i2<n2; ++i2) {
-        for (int i1=0; i1<n1; ++i1) {
-          assertEquals(val,zb3[i3][i2][i1]);
-        }
-        assertEquals(val,zb2[i3][i2]);
-      }
-      assertEquals(val,zb1[i3]);
+    for (int i1=0; i1<n1; ++i1) {
+      assertEquals(val, zb3[0][0][i1]);
+      assertEquals(val, zb2[0][i1]);
+      assertEquals(val, zb1[i1]);
     }
 
     zero(zb1); zero(zb2); zero(zb3);
@@ -377,157 +425,7 @@ public class ArrayMathTest {
 
   }
 
-  @Test
-  public void testComparatorFunctions() {
-    assertEquals(9,  max(1,9,8,6));
-    assertEquals(9,  max(1,9,8));
-    assertEquals(9,  max(1,9));
 
-    assertEquals(1,  min(1,9,8,6));
-    assertEquals(1,  min(1,9,8));
-    assertEquals(1,  min(1,9));
-
-    assertEquals(1,  min(1,9,8,6));
-    assertEquals(1,  min(1,9,8,6));
-
-    assertEquals(9L, max(1L,9L,8L,6L));
-    assertEquals(9L, max(1L,9L,8L));
-    assertEquals(9L, max(1L,9L));
-
-    assertEquals(1L, min(1L,9L,8L,6L));
-    assertEquals(1L, min(1L,9L,8L));
-    assertEquals(1L, min(1L,9L));
-
-    assertEq(1.0, min(1.0,9.0,8.0,6.0));
-    assertEq(1.0, min(1.0,9.0,8.0));
-    assertEq(1.0, min(1.0,9.0));
-
-    assertEq(9.0, max(1.0,9.0,8.0,6.0));
-    assertEq(9.0, max(1.0,9.0,8.0));
-    assertEq(9.0, max(1.0,9.0));
-
-    assertEq(1.0f, min(1.0f,9.0f,8.0f,6.0f));
-    assertEq(1.0f, min(1.0f,9.0f,8.0f));
-    assertEq(1.0f, min(1.0f,9.0f));
-
-    assertEq(9.0f, max(1.0f,9.0f,8.0f,6.0f));
-    assertEq(9.0f, max(1.0f,9.0f,8.0f));
-    assertEq(9.0f, max(1.0f,9.0f));
-
-  }
-
-  @Test
-  public void testAlgebraicFunctions() {
-    // Cubic root
-    assertEq(2.0 , cbrt(8.0 ));
-    assertEq(2.0f, cbrt(8.0f));
-
-    // Hypotenuse
-    assertEq(5.0 , hypot(3.0 , 4.0 ));
-    assertEq(5.0f, hypot(3.0f, 4.0f));
-
-    // (e^x)-1
-    assertEq(22025.46579480 , expm1(10.0 ));
-    assertEq(22025.46579480f, expm1(10.0f));
-
-    // ln(x+1)
-    assertEq(2.39789527279837 , log1p(10.0 ));
-    assertEq(2.39789527279837f, log1p(10.0f));
-  }
-
-  @Test
-  public void testRoundingFunctions() {
-    Random r = new Random();
-    for (int i=0; i<10; ++i) {
-      double d = r.nextDouble();
-      float f = (float)d;
-
-      assertEq(1.0 , ceil(d));
-      assertEq(1.0f, ceil(f));
-
-      assertEq(0.0 , floor(d));
-      assertEq(0.0f, floor(f));
-
-      assertEq( (d<=0.5 ) ? 0.0 : 1.0 , rint(d));
-      assertEq( (f<=0.5f) ? 0.0f: 1.0f, rint(f));
-
-      assertEq( (d<=0.5 ) ? 0.0 : 1.0 , round(d));
-      assertEq( (f<=0.5f) ? 0.0f: 1.0f, round(f));
-    }
-  }
-
-  @Test
-  public void testAbsFunctions() {
-    Random r = new Random();
-    for (int i=0; i<10; ++i) {
-      double d = 2*r.nextDouble()-1.0;
-      float f  = (float)d;
-      assertEq( (d<0.0 ) ? -1.0*d  : d, abs(d));
-      assertEq( (f<0.0f) ? -1.0f*f : f, abs(f));
-    }
-
-    assertEq(-1.0 , signum(-100.0 ));
-    assertEq(-1.0f, signum(-100.0f));
-    assertEq( 0.0 , signum(   0.0 ));
-    assertEq( 0.0f, signum(   0.0f));
-    assertEq( 1.0 , signum( 100.0 ));
-    assertEq( 1.0f, signum( 100.0f));
-  }
-
-  @Test
-  public void testTrigFunctions() {
-    double sqrt2  = sqrt(2.0);
-    double sqrt3  = sqrt(3.0);
-    double sqrt22 = sqrt2/2.0;
-    double sqrt32 = sqrt3/2.0;
-    double sqrt33 = sqrt3/3.0;
-
-    double[] rads    = { 0.0,    PI/6.0, PI/4.0,   PI/3.0, PI/2.0 };
-    double[] sinAns  = { 0.0,       0.5, sqrt22,   sqrt32,    1.0 };
-    double[] cosAns  = { 1.0,    sqrt32, sqrt22,      0.5,    0.0 };
-    double[] tanAns  = { 0.0,    sqrt33,    1.0,    sqrt3,    0.0 };
-    double sinh, cosh, tanh;
-
-    for (int i=0; i<rads.length; ++i) {
-      double drad =        rads[i];
-      float  frad = (float)rads[i];
-
-      assertEq(       sinAns[i], sin(drad));
-      assertEq((float)sinAns[i], sin(frad));
-
-      assertEq(drad, asin(       sinAns[i]));
-      assertEq(frad, asin((float)sinAns[i]));
-
-      assertEq(       cosAns[i], cos(drad));
-      assertEq((float)cosAns[i], cos(frad));
-
-      assertEq(drad, acos(       cosAns[i]));
-      assertEq(frad, acos((float)cosAns[i]));
-
-      if (drad!=PI/2.0) {
-        assertEq(        tanAns[i], tan(drad));
-        assertEq((float) tanAns[i], tan(frad));
-
-        assertEq(drad, atan(       tanAns[i]));
-        assertEq(frad, atan((float)tanAns[i]));
-      }
-
-      sinh = (1.0-pow(E,-2*drad))/(2.0*pow(E,-drad));
-      cosh = (1.0+pow(E,-2*drad))/(2.0*pow(E,-drad));
-      tanh = (1.0-pow(E,-2*drad))/(1.0+pow(E,-2*drad));
-
-      assertEq(       sinh, sinh(drad));
-      assertEq((float)sinh, sinh(frad));
-
-      assertEq(       cosh, cosh(drad));
-      assertEq((float)cosh, cosh(frad));
-
-      assertEq(       tanh, tanh(drad));
-      assertEq((float)tanh, tanh(frad));
-
-    }
-
-  }
 
   @Test
   public void testSort() {
@@ -927,61 +825,102 @@ public class ArrayMathTest {
   }
 
   @Test
-  public void testMath() {
+  public void testSin() {
     assertEq(0.0f,sin(FLT_PI));
     assertEq(0.0d,sin(DBL_PI));
+  }
 
+  @Test
+  public void testCos() {
     assertEq(1.0f,cos(2.0f*FLT_PI));
     assertEq(1.0d,cos(2.0d*DBL_PI));
+  }
 
+  @Test
+  public void testTan() {
     assertEq(1.0f,tan(FLT_PI/4.0f));
     assertEq(1.0d,tan(DBL_PI/4.0d));
+  }
 
+  @Test
+  public void testASin() {
     assertEq(FLT_PI/2.0f,asin(1.0f));
     assertEq(DBL_PI/2.0d,asin(1.0d));
+  }
 
+  @Test
+  public void testACos() {
     assertEq(FLT_PI/2.0f,acos(0.0f));
     assertEq(DBL_PI/2.0d,acos(0.0d));
+  }
 
+  @Test
+  public void testATan() {
     assertEq(FLT_PI/4.0f,atan(1.0f));
     assertEq(DBL_PI/4.0d,atan(1.0d));
+  }
 
+  @Test
+  public void testATan2() {
     assertEq(FLT_PI/2.0f,atan2(1.0f,0.0f));
     assertEq(DBL_PI/2.0d,atan2(1.0d,0.0d));
-
     assertEq(-3.0f*FLT_PI/4.0f,atan2(-1.0f,-1.0f));
     assertEq(-3.0d*DBL_PI/4.0d,atan2(-1.0d,-1.0d));
+  }
 
+  @Test
+  public void testAngleConversion() {
     assertEq(FLT_PI,toRadians(180.0f));
     assertEq(DBL_PI,toRadians(180.0d));
 
     assertEq(180.0f,toDegrees(FLT_PI));
     assertEq(180.0d,toDegrees(DBL_PI));
+  }
 
+  @Test
+  public void testLog() {
     assertEq(1.0f,log(exp(1.0f)));
     assertEq(1.0d,log(exp(1.0d)));
+  }
 
-    assertEq(3.0f,sqrt(pow(3.0f,2.0f)));
-    assertEq(3.0d,sqrt(pow(3.0d,2.0d)));
-
+  @Test
+  public void testHyperbolicTrig() {
     assertEq(tanh(1.0f),sinh(1.0f)/cosh(1.0f));
     assertEq(tanh(1.0d),sinh(1.0d)/cosh(1.0d));
+  }
 
+  @Test
+  public void testSqrtPow() {
+    assertEq(3.0f,sqrt(pow(3.0f,2.0f)));
+    assertEq(3.0d,sqrt(pow(3.0d,2.0d)));
+  }
+
+  @Test
+  public void testCeil() {
     assertEq(4.0f,ceil(FLT_PI));
     assertEq(4.0d,ceil(DBL_PI));
     assertEq(-3.0f,ceil(-FLT_PI));
     assertEq(-3.0d,ceil(-DBL_PI));
+  }
 
+  @Test
+  public void testFloor() {
     assertEq(3.0f,floor(FLT_PI));
     assertEq(3.0d,floor(DBL_PI));
     assertEq(-4.0f,floor(-FLT_PI));
     assertEq(-4.0d,floor(-DBL_PI));
+  }
 
+  @Test
+  public void testRoundInt() {
     assertEq(3.0f,rint(FLT_PI));
     assertEq(3.0d,rint(DBL_PI));
     assertEq(-3.0f,rint(-FLT_PI));
     assertEq(-3.0d,rint(-DBL_PI));
+  }
 
+  @Test
+  public void testRound() {
     assertEq(3,round(FLT_PI));
     assertEq(3,round(DBL_PI));
     assertEq(-3,round(-FLT_PI));
@@ -991,7 +930,10 @@ public class ArrayMathTest {
     assertEq(3,round(DBL_E));
     assertEq(-3,round(-FLT_E));
     assertEq(-3,round(-DBL_E));
+  }
 
+  @Test
+  public void testSignum() {
     assertEq(1.0f,signum(FLT_PI));
     assertEq(1.0d,signum(DBL_PI));
     assertEq(-1.0f,signum(-FLT_PI));
@@ -999,6 +941,10 @@ public class ArrayMathTest {
     assertEq(0.0f,signum(0.0f));
     assertEq(0.0d,signum(0.0d));
 
+  }
+
+  @Test
+  public void testAbs() {
     assertEq(2,abs(2));
     assertEq(2L,abs(2L));
     assertEq(2.0f,abs(2.0f));
@@ -1009,16 +955,204 @@ public class ArrayMathTest {
     assertEq(2.0d,abs(-2.0d));
     assertEquals(0, Float.floatToIntBits(abs(0.0f)));
     assertEquals(0, Double.doubleToLongBits(abs(0.0d)));
+  }
 
+  @Test void testMax() {
     assertEq(4,max(1,3,4,2));
     assertEq(4L,max(1L,3L,4L,2L));
     assertEq(4.0f,max(1.0f,3.0f,4.0f,2.0f));
     assertEq(4.0d,max(1.0d,3.0d,4.0d,2.0d));
 
+    assertEq(4,max(1,3,4));
+    assertEq(4L,max(1L,3L,4L));
+    assertEq(4.0f,max(1.0f,3.0f,4.0f));
+    assertEq(4.0d,max(1.0d,3.0d,4.0d));
+  }
+
+  @Test
+  public void testMin() {
     assertEq(1,min(3,1,4,2));
     assertEq(1L,min(3L,1L,4L,2L));
     assertEq(1.0f,min(3.0f,1.0f,4.0f,2.0f));
     assertEq(1.0d,min(3.0d,1.0d,4.0d,2.0d));
+
+    assertEq(1,min(3,1,4));
+    assertEq(1L,min(3L,1L,4L));
+    assertEq(1.0f,min(3.0f,1.0f,4.0f));
+    assertEq(1.0d,min(3.0d,1.0d,4.0d));
+  }
+
+  @Test
+  public void testCubicRoot() {
+    assertEq(2.0, cbrt(8.0));
+    assertEq(2.0f, cbrt(8.0f));
+  }
+
+  @Test
+  public void testHypotenuse() {
+    assertEq(5.0, hypot(3.0, 4.0));
+    assertEq(5.0f, hypot(3.0f, 4.0f));
+  }
+
+  @Test
+  public void testExponentialMinusOne() {
+    assertEq(22025.46579480, expm1(10.0));
+    assertEq(22025.46579480f, expm1(10.0f));
+  }
+
+  @Test
+  public void testLnPlusOne() {
+    assertEq(2.39789527279837 , log1p(10.0 ));
+    assertEq(2.39789527279837f, log1p(10.0f));
+  }
+
+  @Test
+  public void testLog10() {
+    float fi = 1.0f;
+    double di = 1.0;
+    for (int i=1; i<=10; ++i) {
+      fi *= 10.0f; di *= 10.0;
+      assertEq((float)i, log10(fi));
+      assertEq((double)i, log10(di));
+    }
+  }
+
+  @Test
+  public void testUlp() {
+    assertEq(FLT_EPSILON, ulp(1.2345f));
+    assertEq(DBL_EPSILON, ulp(1.2345));
+  }
+
+  @Test
+  public void testRandomBounds() {
+    for (int i=0; i<100; ++i) {
+      double rd  = randomDouble();
+      double rd2 = random();
+      double rf  = randomFloat();
+      assertTrue(rd  >= 0.0d && rd  < 1.0d);
+      assertTrue(rd2 >= 0.0d && rd2 < 1.0d);
+      assertTrue(rf  >= 0.0d && rf  < 1.0d);
+    }
+  }
+
+  @Test
+  public void testIEEERemainder() {
+    assertEq(-1.0d, IEEEremainder(3.0d,2.0d));
+    assertEq(-1.0f, IEEEremainder(3.0f,2.0f));
+  }
+
+  @Test
+  public void testRampBytes() {
+    int n1 = 7; int n2 = 5; int n3 = 3;
+    byte f = (byte)0; byte r1 = (byte)1; byte r2 = (byte)2;
+    byte[]     arr1 = rampbyte(f,r1,n3);
+    byte[][]   arr2 = rampbyte(f,r1,r2,n3,n2);
+    byte[][][] arr3 = rampbyte(f,r1,r2,r1,n3,n2,n1);
+
+    for (int i3=0; i3<n3; ++i3) {
+      for (int i2=0; i2<n2; ++i2) {
+        for (int i1=0; i1<n1; ++i1) {
+          assertEquals((byte)(i3+2*i2+i1), arr3[i1][i2][i3]);
+        }
+        assertEquals((byte) (2*i2 + i3), arr2[i2][i3]);
+      }
+      assertEquals((byte)i3, arr1[i3]);
+    }
+  }
+
+  @Test
+  public void testRampShorts() {
+    int n1 = 7; int n2 = 5; int n3 = 3;
+    short f = 0; short r1 = 1; short r2 = 2;
+    short[]     arr1 = rampshort(f,r1,n3);
+    short[][]   arr2 = rampshort(f,r1,r2,n3,n2);
+    short[][][] arr3 = rampshort(f,r1,r2,r1,n3,n2,n1);
+
+    for (int i3=0; i3<n3; ++i3) {
+      for (int i2 = 0; i2 < n2; ++i2) {
+        for (int i1 = 0; i1 < n1; ++i1) {
+          assertEquals((short)(i3+2*i2+i1), arr3[i1][i2][i3]);
+        }
+        assertEquals((short)(2*i2+i3), arr2[i2][i3]);
+      }
+      assertEquals((short)i3, arr1[i3]);
+    }
+  }
+
+  @Test
+  public void testRampInts() {
+    int n1 = 7; int n2 = 5; int n3 = 3;
+    int f = 0; int r1 = 1; int r2 = 2;
+    int[]     arr1 = rampint(f,r1,n3);
+    int[][]   arr2 = rampint(f,r1,r2,n3,n2);
+    int[][][] arr3 = rampint(f,r1,r2,r1,n3,n2,n1);
+
+    for (int i3=0; i3<n3; ++i3) {
+      for (int i2=0; i2<n2; ++i2) {
+        for (int i1=0; i1<n1; ++i1) {
+          assertEquals((i3+2*i2+i1), arr3[i1][i2][i3]);
+        }
+        assertEquals((2*i2+i3), arr2[i2][i3]);
+      }
+      assertEquals(i3, arr1[i3]);
+    }
+  }
+
+  @Test
+  public void testRampLongs() {
+    int n1 = 7; int n2 = 5; int n3 = 3;
+    long f = 0L; long r1 = 1L; long r2 = 2L;
+    long[]     arr1 = ramplong(f,r1,n3);
+    long[][]   arr2 = ramplong(f,r1,r2,n3,n2);
+    long[][][] arr3 = ramplong(f,r1,r2,r1,n3,n2,n1);
+
+    for (int i3=0; i3<n3; ++i3) {
+      for (int i2=0; i2<n2; ++i2) {
+        for (int i1=0; i1<n1; ++i1) {
+          assertEquals((long)(i3+2*i2+i1), arr3[i1][i2][i3]);
+        }
+        assertEquals((long)(2*i2+i3), arr2[i2][i3]);
+      }
+      assertEquals((long)i3, arr1[i3]);
+    }
+  }
+
+  @Test
+  public void testRampDoubles() {
+    int n1 = 7; int n2 = 5; int n3 = 3;
+    double f = 0.0d; double r1 = 1.0d; double r2 = 2.0d;
+    double[]     arr1 = rampdouble(f,r1,n3);
+    double[][]   arr2 = rampdouble(f,r1,r2,n3,n2);
+    double[][][] arr3 = rampdouble(f,r1,r2,r1,n3,n2,n1);
+
+    for (int i3=0; i3<n3; ++i3) {
+      for (int i2=0; i2<n2; ++i2) {
+        for (int i1=0; i1<n1; ++i1) {
+          assertEquals((double)(i3+2*i2+i1), arr3[i1][i2][i3]);
+        }
+        assertEquals((double)(2*i2+i3), arr2[i2][i3]);
+      }
+      assertEquals((double)i3, arr1[i3]);
+    }
+  }
+
+  @Test
+  public void testRampFloats() {
+    int n1 = 7; int n2 = 5; int n3 = 3;
+    float f = 0.0f; float r1 = 1.0f; float r2 = 2.0f;
+    float[]     arr1 = rampfloat(f,r1,n3);
+    float[][]   arr2 = rampfloat(f,r1,r2,n3,n2);
+    float[][][] arr3 = rampfloat(f,r1,r2,r1,n3,n2,n1);
+
+    for (int i3=0; i3<n3; ++i3) {
+      for (int i2=0; i2<n2; ++i2) {
+        for (int i1=0; i1<n1; ++i1) {
+          assertEquals((float)(i3+2*i2+i1), arr3[i1][i2][i3]);
+        }
+        assertEquals((float)(2*i2+i3), arr2[i2][i3]);
+      }
+      assertEquals((float)i3, arr1[i3]);
+    }
   }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1113,4 +1247,6 @@ public class ArrayMathTest {
     for (int j=1; j<n; ++j)
       assertTrue(x[i2[j-1]]<=x[i2[j]]);
   }
+
+
 }
