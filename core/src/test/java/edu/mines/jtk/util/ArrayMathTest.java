@@ -14,6 +14,7 @@ limitations under the License.
 ****************************************************************************/
 package edu.mines.jtk.util;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static edu.mines.jtk.util.ArrayMath.*;
@@ -21,6 +22,8 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
@@ -33,8 +36,8 @@ public class ArrayMathTest {
 
   // Adapted from Bentley, J.L., and McIlroy, M.D., 1993, Engineering a sort
   // function, Software -- Practice and Experience, v. 23(11), p. 1249-1265.
-  private static final int SAWTOOTH=0,RAND=1,STAGGER=2,PLATEAU=3,SHUFFLE=4;
-  private static final int COPY=0,REV=1,REVHALF1=2,REVHALF2=3,SORT=4,DITHER=5;
+  protected static final int SAWTOOTH=0,RAND=1,STAGGER=2,PLATEAU=3,SHUFFLE=4;
+  protected static final int COPY=0,REV=1,REVHALF1=2,REVHALF2=3,SORT=4,DITHER=5;
 
   @Test
   public void testCFloatArraysInits() {
@@ -42,13 +45,13 @@ public class ArrayMathTest {
 
     Cfloat val = new Cfloat(1.0f,-1.0f);
 
-    float[]     z1 = cfillfloat(val,n1);
+    float[]     a1 = cfillfloat(val,n1);
     float[][]   z2 = cfillfloat(val,n1,n2);
     float[][][] z3 = cfillfloat(val,n1,n2,n3);
 
     assertEquals(n3,z3.length);
     assertEquals(n2,z2.length);
-    assertEquals(2*n1,z1.length);
+    assertEquals(2*n1,a1.length);
 
     assertEquals(n2,z3[0].length);
     assertEquals(2*n1,z2[0].length);
@@ -60,34 +63,34 @@ public class ArrayMathTest {
       assertEq(val.i, z3[0][0][2*i1+1]);
       assertEq(val.r, z2[0][2*i1]);
       assertEq(val.i, z2[0][2*i1+1]);
-      assertEq(val.r, z1[2*i1]);
-      assertEq(val.i, z1[2*i1+1]);
+      assertEq(val.r, a1[2*i1]);
+      assertEq(val.i, a1[2*i1+1]);
     }
 
-    czero(z1); czero(z2); czero(z3);
+    czero(a1); czero(z2); czero(z3);
 
-    assertArrayEquals(z1, czerofloat(n1), FLT_EPSILON);
+    assertArrayEquals(a1, czerofloat(n1), FLT_EPSILON);
     assertArrayEquals(z2, czerofloat(n1,n2));
     assertArrayEquals(z3, czerofloat(n1,n2,n3));
 
     // Rand
-    z1 = crandfloat(2*n1);
+    a1 = crandfloat(2*n1);
     z2 = crandfloat(2*n1,2*n2);
     z3 = crandfloat(2*n1,2*n2,2*n3);
 
     assertEquals(2*n3,z3.length);
     assertEquals(2*n2,z2.length);
     assertEquals(2*n2,z3[0].length);
-    assertEquals(4*n1,z1.length);
+    assertEquals(4*n1,a1.length);
     assertEquals(4*n1,z2[0].length);
     assertEquals(4*n1,z3[0][0].length);
 
-    crand(z1); crand(z2); crand(z3);
+    crand(a1); crand(z2); crand(z3);
 
     assertEquals(2*n3,z3.length);
     assertEquals(2*n2,z2.length);
     assertEquals(2*n2,z3[0].length);
-    assertEquals(4*n1,z1.length);
+    assertEquals(4*n1,a1.length);
     assertEquals(4*n1,z2[0].length);
     assertEquals(4*n1,z3[0][0].length);
   }
@@ -98,13 +101,13 @@ public class ArrayMathTest {
 
     Cdouble val = new Cdouble(1.0,-1.0);
 
-    double[]     z1 = cfilldouble(val,n1);
+    double[]     a1 = cfilldouble(val,n1);
     double[][]   z2 = cfilldouble(val,n1,n2);
     double[][][] z3 = cfilldouble(val,n1,n2,n3);
 
     assertEquals(n3,z3.length);
     assertEquals(n2,z2.length);
-    assertEquals(2*n1,z1.length);
+    assertEquals(2*n1,a1.length);
 
     assertEquals(n2,z3[0].length);
     assertEquals(2*n1,z2[0].length);
@@ -116,34 +119,34 @@ public class ArrayMathTest {
       assertEq(val.i, z3[0][0][2*i1+1]);
       assertEq(val.r, z2[0][2*i1]);
       assertEq(val.i, z2[0][2*i1+1]);
-      assertEq(val.r, z1[2*i1]);
-      assertEq(val.i, z1[2*i1+1]);
+      assertEq(val.r, a1[2*i1]);
+      assertEq(val.i, a1[2*i1+1]);
     }
 
-    czero(z1); czero(z2); czero(z3);
+    czero(a1); czero(z2); czero(z3);
 
-    assertArrayEquals(z1, czerodouble(n1), FLT_EPSILON);
+    assertArrayEquals(a1, czerodouble(n1), FLT_EPSILON);
     assertArrayEquals(z2, czerodouble(n1,n2));
     assertArrayEquals(z3, czerodouble(n1,n2,n3));
 
     // Rand
-    z1 = cranddouble(2*n1);
+    a1 = cranddouble(2*n1);
     z2 = cranddouble(2*n1,2*n2);
     z3 = cranddouble(2*n1,2*n2,2*n3);
 
     assertEquals(2*n3,z3.length);
     assertEquals(2*n2,z2.length);
     assertEquals(2*n2,z3[0].length);
-    assertEquals(4*n1,z1.length);
+    assertEquals(4*n1,a1.length);
     assertEquals(4*n1,z2[0].length);
     assertEquals(4*n1,z3[0][0].length);
 
-    crand(z1); crand(z2); crand(z3);
+    crand(a1); crand(z2); crand(z3);
 
     assertEquals(2*n3,z3.length);
     assertEquals(2*n2,z2.length);
     assertEquals(2*n2,z3[0].length);
-    assertEquals(4*n1,z1.length);
+    assertEquals(4*n1,a1.length);
     assertEquals(4*n1,z2[0].length);
     assertEquals(4*n1,z3[0][0].length);
   }
@@ -201,58 +204,7 @@ public class ArrayMathTest {
     assertEquals(2*n1,zd3[0][0].length);
   }
 
-  @Test
-  public void testFloatArraysInits() {
-    int n3 = 3, n2 = 5, n1 = 7;
 
-    float val = 1.0f;
-
-    float[]     zf1 = fillfloat(val,n1);
-    float[][]   zf2 = fillfloat(val,n1,n2);
-    float[][][] zf3 = fillfloat(val,n1,n2,n3);
-
-    assertEquals(n3,zf3.length);
-    assertEquals(n2,zf2.length);
-    assertEquals(n1,zf1.length);
-
-    assertEquals(n2,zf3[0].length);
-    assertEquals(n1,zf2[0].length);
-
-    assertEquals(n1,zf3[0][0].length);
-
-    for (int i1=0; i1<n1; ++i1) {
-      assertEq(val,zf3[0][0][i1]);
-      assertEq(val,zf2[0][i1]);
-      assertEq(val,zf1[i1]);
-    }
-
-    zero(zf1); zero(zf2); zero(zf3);
-
-    assertArrayEquals(zf1, zerofloat(n1), FLT_EPSILON);
-    assertArrayEquals(zf2, zerofloat(n1,n2));
-    assertArrayEquals(zf3, zerofloat(n1,n2,n3));
-
-    // Rand
-    zf1 = randfloat(2*n1);
-    zf2 = randfloat(2*n1,2*n2);
-    zf3 = randfloat(2*n1,2*n2,2*n3);
-
-    assertEquals(2*n3,zf3.length);
-    assertEquals(2*n2,zf2.length);
-    assertEquals(2*n2,zf3[0].length);
-    assertEquals(2*n1,zf1.length);
-    assertEquals(2*n1,zf2[0].length);
-    assertEquals(2*n1,zf3[0][0].length);
-
-    rand(zf1); rand(zf2); rand(zf3);
-
-    assertEquals(2*n3,zf3.length);
-    assertEquals(2*n2,zf2.length);
-    assertEquals(2*n2,zf3[0].length);
-    assertEquals(2*n1,zf1.length);
-    assertEquals(2*n1,zf2[0].length);
-    assertEquals(2*n1,zf3[0][0].length);
-  }
 
   @Test
   public void testLongArraysInits() {
@@ -483,138 +435,9 @@ public class ArrayMathTest {
     }
   }
 
-  @Test
-  public void testFloat1() {
-    int n1 = 8;
-    int n2 = 6;
-    int n3 = 4;
-    float[] a1 = rampfloat(0,1,n1);
-    float[][] a2 = rampfloat(0,1,10,n1,n2);
-    float[][][] a3 = rampfloat(0,1,10,100,n1,n2,n3);
-    float[] b1;
-    float[][] b2;
-    float[][][] b3;
 
-    b1 = copy(a1);
-    b2 = copy(a2);
-    b3 = copy(a3);
-    assertEqual(b1,a1);
-    assertEqual(b2,a2);
-    assertEqual(b3,a3);
 
-    copy(a1,b1);
-    copy(a2,b2);
-    copy(a3,b3);
-    assertEqual(b1,a1);
-    assertEqual(b2,a2);
-    assertEqual(b3,a3);
 
-    b1 = copy(n1-1,a1);
-    b2 = copy(n1-1,n2-1,a2);
-    b3 = copy(n1-1,n2-1,n3-1,a3);
-    assertEqual(b1,rampfloat(0,1,n1-1));
-    assertEqual(b2,rampfloat(0,1,10,n1-1,n2-1));
-    assertEqual(b3,rampfloat(0,1,10,100,n1-1,n2-1,n3-1));
-
-    copy(n1-1,a1,b1);
-    copy(n1-1,n2-1,a2,b2);
-    copy(n1-1,n2-1,n3-1,a3,b3);
-    assertEqual(b1,rampfloat(0,1,n1-1));
-    assertEqual(b2,rampfloat(0,1,10,n1-1,n2-1));
-    assertEqual(b3,rampfloat(0,1,10,100,n1-1,n2-1,n3-1));
-
-    b1 = copy(n1-1,1,a1);
-    b2 = copy(n1-2,n2-1,2,1,a2);
-    b3 = copy(n1-3,n2-2,n3-1,3,2,1,a3);
-    assertEqual(b1,rampfloat(1,1,n1-1));
-    assertEqual(b2,rampfloat(12,1,10,n1-1,n2-1));
-    assertEqual(b3,rampfloat(123,1,10,100,n1-1,n2-1,n3-1));
-    
-    copy(n1-1,1,a1,0,b1);
-    copy(n1-2,n2-1,2,1,a2,0,0,b2);
-    copy(n1-3,n2-2,n3-1,3,2,1,a3,0,0,0,b3);
-    assertEqual(b1,rampfloat(1,1,n1-1));
-    assertEqual(b2,rampfloat(12,1,10,n1-1,n2-1));
-    assertEqual(b3,rampfloat(123,1,10,100,n1-1,n2-1,n3-1));
-
-    b1 = copy(n1/2,0,2,a1);
-    b2 = copy(n1/2,n2/2,0,0,2,2,a2);
-    b3 = copy(n1/2,n2/2,n3/2,0,0,0,2,2,2,a3);
-    assertEqual(b1,rampfloat(0,2,n1/2));
-    assertEqual(b2,rampfloat(0,2,20,n1/2,n2/2));
-    assertEqual(b3,rampfloat(0,2,20,200,n1/2,n2/2,n3/2));
-
-    b1 = copy(a1);
-    b2 = copy(a2);
-    b3 = copy(a3);
-    copy(n1-1,1,a1,1,b1);
-    copy(n1-2,n2-1,2,1,a2,2,1,b2);
-    copy(n1-3,n2-2,n3-1,3,2,1,a3,3,2,1,b3);
-    assertEqual(b1,rampfloat(0,1,n1));
-    assertEqual(b2,rampfloat(0,1,10,n1,n2));
-    assertEqual(b3,rampfloat(0,1,10,100,n1,n2,n3));
-
-    b1 = reverse(reverse(a1));
-    assertEqual(b1,a1);
-
-    b2 = reshape(n1,n2,flatten(a2));
-    b3 = reshape(n1,n2,n3,flatten(a3));
-    assertEqual(a2,b2);
-    assertEqual(a3,b3);
-
-    b2 = transpose(transpose(a2));
-    assertEqual(a2,b2);
-  }
-
-  @Test
-  public void testFloat2() {
-    int n1 = 3;
-    int n2 = 4;
-    int n3 = 5;
-    float r0 = 0.0f;
-    float ra = 2.0f;
-    float rb1 = 1.0f;
-    float rb2 = 2.0f;
-    float rb3 = 4.0f;
-    float[][][] rx;
-
-    assertEqual(zerofloat(n1,n2,n3),fillfloat(r0,n1,n2,n3));
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    assertEqual(rx,sub(add(rx,rx),rx));
-    assertEqual(rx,sub(add(rx,ra),ra));
-    assertEqual(fillfloat(ra,n1,n2,n3),sub(add(ra,rx),rx));
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    assertEqual(rx,div(mul(rx,rx),rx));
-    assertEqual(rx,div(mul(rx,ra),ra));
-    assertEqual(fillfloat(ra,n1,n2,n3),div(mul(ra,rx),rx));
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    assertEqual(rx,log(exp(rx)));
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    assertAlmostEqual(rx,mul(sqrt(rx),sqrt(rx)));
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    assertAlmostEqual(rx,pow(sqrt(rx),2.0f));
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    int[] imax = {-1,-1,-1};
-    float rmax = max(rx,imax);
-    assertTrue(rmax==rx[n3-1][n2-1][n1-1]);
-    assertEq(n1-1,imax[0]);
-    assertEq(n2-1,imax[1]);
-    assertEq(n3-1,imax[2]);
-
-    rx = rampfloat(ra,rb1,rb2,rb3,n1,n2,n3);
-    int[] imin = {-1,-1,-1};
-    float rmin = min(rx,imin);
-    assertTrue(rmin==rx[0][0][0]);
-    assertEq(0,imin[0]);
-    assertEq(0,imin[1]);
-    assertEq(0,imin[2]);
-  }
 
   @Test
   public void testCfloat1() {
@@ -1136,55 +959,58 @@ public class ArrayMathTest {
     }
   }
 
-  @Test
-  public void testRampFloats() {
-    int n1 = 7; int n2 = 5; int n3 = 3;
-    float f = 0.0f; float r1 = 1.0f; float r2 = 2.0f;
-    float[]     arr1 = rampfloat(f,r1,n3);
-    float[][]   arr2 = rampfloat(f,r1,r2,n3,n2);
-    float[][][] arr3 = rampfloat(f,r1,r2,r1,n3,n2,n1);
+//////////////////////////////////////////////////////////////////////////////
+// protected
 
-    for (int i3=0; i3<n3; ++i3) {
-      for (int i2=0; i2<n2; ++i2) {
-        for (int i1=0; i1<n1; ++i1) {
-          assertEquals((float)(i3+2*i2+i1), arr3[i1][i2][i3]);
-        }
-        assertEquals((float)(2*i2+i3), arr2[i2][i3]);
-      }
-      assertEquals((float)i3, arr1[i3]);
+  protected Object getMethod(
+    String methodName, ArrayMathTest obj, Object[] params)
+    throws SecurityException,
+           NoSuchMethodException,
+           IllegalArgumentException,
+           IllegalAccessException,
+           InvocationTargetException
+  {
+    int pn = params.length;
+    Class[] pcls = new Class[pn];
+    for (int i=0; i<pn; ++i) {
+      pcls[i] = params[i].getClass();
     }
+    Method m = obj.getClass().getMethod(methodName, pcls);
+    return m.invoke(obj, params);
   }
 
-//////////////////////////////////////////////////////////////////////////////
-// private
+  protected static int n3;
+  protected static int n2;
+  protected static int n1;
 
-  private void assertEq(float expected, float actual) {
+  protected void assertEq(float expected, float actual) {
     float small = 1.0e-6f*max(abs(expected),abs(actual),1.0f);
     assertEquals(expected,actual,small);
   }
 
-  private void assertEq(double expected, double actual) {
+  protected void assertEq(double expected, double actual) {
     double small = 1.0e-12f*max(abs(expected),abs(actual),1.0d);
     assertEquals(expected,actual,small);
   }
 
-  private void assertEqual(float[] rx, float[] ry) {
+  protected void assertEqual(float[] rx, float[] ry) {
     assertTrue(equal(rx,ry));
   }
 
-  private void assertEqual(float[][] rx, float[][] ry) {
+  protected void assertEqual(float[][] rx, float[][] ry) {
     assertTrue(equal(rx,ry));
   }
 
-  private void assertEqual(float[][][] rx, float[][][] ry) {
+  protected void assertEqual(float[][][] rx, float[][][] ry) {
     assertTrue(equal(rx,ry));
   }
 
-  private void assertAlmostEqual(float[][][] rx, float[][][] ry) {
+  protected void assertAlmostEqual(float[][][] rx, float[][][] ry) {
     float tolerance = 100.0f*FLT_EPSILON;
     assertTrue(equal(tolerance,rx,ry));
   }
-    private void checkSearch(double[] a, double x) {
+
+  protected void checkSearch(double[] a, double x) {
     int n = a.length;
     int i = binarySearch(a,x);
     validateSearch(a,x,i);
@@ -1193,7 +1019,8 @@ public class ArrayMathTest {
       validateSearch(a,x,i);
     }
   }
-  private void validateSearch(double[] a, double x, int i) {
+
+  protected void validateSearch(double[] a, double x, int i) {
     int n = a.length;
     if (i>=0) {
       assertTrue(a[i]==x);
@@ -1220,7 +1047,8 @@ public class ArrayMathTest {
       }
     }
   }
-  private void sortAndCheck(float[] x) {
+
+  protected void sortAndCheck(float[] x) {
     int n = x.length;
     float[] x1 = copy(x);
     for (int k=0; k<n; k+=n/4) {
@@ -1247,6 +1075,5 @@ public class ArrayMathTest {
     for (int j=1; j<n; ++j)
       assertTrue(x[i2[j-1]]<=x[i2[j]]);
   }
-
 
 }
