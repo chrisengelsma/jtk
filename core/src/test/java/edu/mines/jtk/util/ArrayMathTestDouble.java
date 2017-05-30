@@ -18,28 +18,25 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static edu.mines.jtk.util.ArrayMath.*;
-import static edu.mines.jtk.util.ArrayMath.transpose;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 /**
- * Tests simple float array operations in
+ * Tests simple double array operations in
  * {@link edu.mines.jtk.util.ArrayMath}.
  * @author Chris Engelsma
  * @version 2017.05.30
  */
-public class ArrayMathTestFloat extends ArrayMathTest {
+public class ArrayMathTestDouble extends ArrayMathTest {
 
   @BeforeMethod
   public void setUp() {
     n3 = 8; n2 = 6; n1 = 4;
-    a1 = rampfloat(0,1,n1);
-    a2 = rampfloat(0,1,10,n1,n2);
-    a3 = rampfloat(0,1,10,100,n1,n2,n3);
-    b1 = zerofloat(n1);
-    b2 = zerofloat(n1,n2);
-    b3 = zerofloat(n1,n2,n3);
+    a1 = rampdouble(0d,1d,n1);
+    a2 = rampdouble(0d,1d,10d,n1,n2);
+    a3 = rampdouble(0d,1d,10d,100d,n1,n2,n3);
+    b1 = zerodouble(n1);
+    b2 = zerodouble(n1,n2);
+    b3 = zerodouble(n1,n2,n3);
   }
 
   @Test
@@ -50,18 +47,18 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     fill(1,a3);
     assertFalse(equal(a3,b3));
 
-    assertTrue(equal(1.0f,a3,b3));
-    assertFalse(equal(0.99f,a3,b3));
+    assertTrue(equal(1.0,a3,b3));
+    assertFalse(equal(0.99,a3,b3));
   }
 
   @Test
-  public void testRampFloats() {
+  public void testRampDoubles() {
     assertArraySize(a1,n1);
     assertArraySize(a2,n1,n2);
     assertArraySize(a3,n1,n2,n3);
 
     for (int i1=0; i1<n1; ++i1) {
-      float expected = (float)i1;
+      double expected = (double)i1;
       assertEquals(expected,a3[0][0][i1]);
       assertEquals(expected,a2[0][i1]);
       assertEquals(expected,a1[i1]);
@@ -69,14 +66,14 @@ public class ArrayMathTestFloat extends ArrayMathTest {
   }
 
   @Test
-  public void testFillFloats() {
-    float val = 1.0f;
+  public void testFillDoubles() {
+    double val = 1.0d;
 
-    assertEqual(zerofloat(n1,n2,n3),fillfloat(0.0f,n1,n2,n3));
+    assertEqual(zerodouble(n1,n2,n3),filldouble(0.0,n1,n2,n3));
 
-    a1 = fillfloat(val,n1);
-    a2 = fillfloat(val,n1,n2);
-    a3 = fillfloat(val,n1,n2,n3);
+    a1 = filldouble(val,n1);
+    a2 = filldouble(val,n1,n2);
+    a3 = filldouble(val,n1,n2,n3);
 
     assertArraySize(a1,n1);
     assertArraySize(a2,n1,n2);
@@ -109,9 +106,9 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     assertTrue(equal(a2,b2));
     assertTrue(equal(a3,b3));
 
-    b1 = randfloat(n1);
-    b2 = randfloat(n1,n2);
-    b3 = randfloat(n1,n2,n3);
+    b1 = randdouble(n1);
+    b2 = randdouble(n1,n2);
+    b3 = randdouble(n1,n2,n3);
 
     assertFalse(equal(a1,b1));
     assertFalse(equal(a2,b2));
@@ -137,37 +134,37 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     b1 = copy(n1 - 1,a1);
     b2 = copy(n1 - 1,n2 - 1,a2);
     b3 = copy(n1 - 1,n2 - 1,n3 - 1,a3);
-    assertEqual(b1,rampfloat(0,1,n1 - 1));
-    assertEqual(b2,rampfloat(0,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,rampfloat(0,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    assertEqual(b1,rampdouble(0,1,n1 - 1));
+    assertEqual(b2,rampdouble(0,1,10,n1 - 1,n2 - 1));
+    assertEqual(b3,rampdouble(0,1,10,100,n1 - 1,n2 - 1,n3 - 1));
 
     copy(n1 - 1,a1,b1);
     copy(n1 - 1,n2 - 1,a2,b2);
     copy(n1 - 1,n2 - 1,n3 - 1,a3,b3);
-    assertEqual(b1,rampfloat(0,1,n1 - 1));
-    assertEqual(b2,rampfloat(0,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,rampfloat(0,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    assertEqual(b1,rampdouble(0,1,n1 - 1));
+    assertEqual(b2,rampdouble(0,1,10,n1 - 1,n2 - 1));
+    assertEqual(b3,rampdouble(0,1,10,100,n1 - 1,n2 - 1,n3 - 1));
 
     b1 = copy(n1 - 1,1,a1);
     b2 = copy(n1 - 2,n2 - 1,2,1,a2);
     b3 = copy(n1 - 3,n2 - 2,n3 - 1,3,2,1,a3);
-    assertEqual(b1,rampfloat(1,1,n1 - 1));
-    assertEqual(b2,rampfloat(12,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,rampfloat(123,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    assertEqual(b1,rampdouble(1,1,n1 - 1));
+    assertEqual(b2,rampdouble(12,1,10,n1 - 1,n2 - 1));
+    assertEqual(b3,rampdouble(123,1,10,100,n1 - 1,n2 - 1,n3 - 1));
 
     copy(n1 - 1,1,a1,0,b1);
     copy(n1 - 2,n2 - 1,2,1,a2,0,0,b2);
     copy(n1 - 3,n2 - 2,n3 - 1,3,2,1,a3,0,0,0,b3);
-    assertEqual(b1,rampfloat(1,1,n1 - 1));
-    assertEqual(b2,rampfloat(12,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,rampfloat(123,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    assertEqual(b1,rampdouble(1,1,n1 - 1));
+    assertEqual(b2,rampdouble(12,1,10,n1 - 1,n2 - 1));
+    assertEqual(b3,rampdouble(123,1,10,100,n1 - 1,n2 - 1,n3 - 1));
 
     b1 = copy(n1 / 2,0,2,a1);
     b2 = copy(n1 / 2,n2 / 2,0,0,2,2,a2);
     b3 = copy(n1 / 2,n2 / 2,n3 / 2,0,0,0,2,2,2,a3);
-    assertEqual(b1,rampfloat(0,2,n1 / 2));
-    assertEqual(b2,rampfloat(0,2,20,n1 / 2,n2 / 2));
-    assertEqual(b3,rampfloat(0,2,20,200,n1 / 2,n2 / 2,n3 / 2));
+    assertEqual(b1,rampdouble(0,2,n1 / 2));
+    assertEqual(b2,rampdouble(0,2,20,n1 / 2,n2 / 2));
+    assertEqual(b3,rampdouble(0,2,20,200,n1 / 2,n2 / 2,n3 / 2));
 
     b1 = copy(a1);
     b2 = copy(a2);
@@ -175,9 +172,9 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     copy(n1 - 1,1,a1,1,b1);
     copy(n1 - 2,n2 - 1,2,1,a2,2,1,b2);
     copy(n1 - 3,n2 - 2,n3 - 1,3,2,1,a3,3,2,1,b3);
-    assertEqual(b1,rampfloat(0,1,n1));
-    assertEqual(b2,rampfloat(0,1,10,n1,n2));
-    assertEqual(b3,rampfloat(0,1,10,100,n1,n2,n3));
+    assertEqual(b1,rampdouble(0,1,n1));
+    assertEqual(b2,rampdouble(0,1,10,n1,n2));
+    assertEqual(b3,rampdouble(0,1,10,100,n1,n2,n3));
   }
 
   @Test
@@ -209,9 +206,9 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     assertFalse(distinct(a2,b2));
     assertFalse(distinct(a1,b1));
 
-    b3 = new float[n3][n2][n1];
-    b2 = new float[n2][n1];
-    b1 = new float[n1];
+    b3 = new double[n3][n2][n1];
+    b2 = new double[n2][n1];
+    b1 = new double[n1];
     assertTrue(distinct(a3,b3));
     assertTrue(distinct(a2,b2));
     assertTrue(distinct(a1,b1));
@@ -224,16 +221,16 @@ public class ArrayMathTestFloat extends ArrayMathTest {
 
   @Test
   public void testAddition() {
-    b1 = rampfloat(1,1,n1);                 assertEqual(b1,add(1,a1));
+    b1 = rampdouble(1,1,n1);                assertEqual(b1,add(1,a1));
                                             assertEqual(b1,add(a1,1));
-    b2 = rampfloat(1,1,10,n1,n2);           assertEqual(b2,add(1,a2));
+    b2 = rampdouble(1,1,10,n1,n2);          assertEqual(b2,add(1,a2));
                                             assertEqual(b2,add(a2,1));
-    b3 = rampfloat(1,1,10,100,n1,n2,n3);    assertEqual(b3,add(1,a3));
+    b3 = rampdouble(1,1,10,100,n1,n2,n3);   assertEqual(b3,add(1,a3));
                                             assertEqual(b3,add(a3,1));
 
-    b1 = rampfloat(0,2,n1);                 assertEqual(b1,add(a1,a1));
-    b2 = rampfloat(0,2,20,n1,n2);           assertEqual(b2,add(a2,a2));
-    b3 = rampfloat(0,2,20,200,n1,n2,n3);    assertEqual(b3,add(a3,a3));
+    b1 = rampdouble(0,2,n1);                assertEqual(b1,add(a1,a1));
+    b2 = rampdouble(0,2,20,n1,n2);          assertEqual(b2,add(a2,a2));
+    b3 = rampdouble(0,2,20,200,n1,n2,n3);   assertEqual(b3,add(a3,a3));
 
     add(a1,a1,a1);                          assertEquals(b1,a1);
     add(a2,a2,a2);                          assertEquals(b2,b2);
@@ -242,13 +239,13 @@ public class ArrayMathTestFloat extends ArrayMathTest {
 
   @Test
   public void testSubtraction() {
-    b1 = rampfloat(-1,1,n1);                assertEqual(b1,sub(a1,1));
-    b2 = rampfloat(-1,1,10,n1,n2);          assertEqual(b2,sub(a2,1));
-    b3 = rampfloat(-1,1,10,100,n1,n2,n3);   assertEqual(b3,sub(a3,1));
+    b1 = rampdouble(-1,1,n1);               assertEqual(b1,sub(a1,1));
+    b2 = rampdouble(-1,1,10,n1,n2);         assertEqual(b2,sub(a2,1));
+    b3 = rampdouble(-1,1,10,100,n1,n2,n3);  assertEqual(b3,sub(a3,1));
 
-    b1 = rampfloat(1,-1,n1);                assertEqual(b1,sub(1,a1));
-    b2 = rampfloat(1,-1,-10,n1,n2);         assertEqual(b2,sub(1,a2));
-    b3 = rampfloat(1,-1,-10,-100,n1,n2,n3); assertEqual(b3,sub(1,a3));
+    b1 = rampdouble(1,-1,n1);               assertEqual(b1,sub(1,a1));
+    b2 = rampdouble(1,-1,-10,n1,n2);        assertEqual(b2,sub(1,a2));
+    b3 = rampdouble(1,-1,-10,-100,n1,n2,n3);assertEqual(b3,sub(1,a3));
 
     zero(b1);                               assertEqual(b1,sub(a1,a1));
     zero(b2);                               assertEqual(b2,sub(a2,a2));
@@ -261,22 +258,22 @@ public class ArrayMathTestFloat extends ArrayMathTest {
 
   @Test
   public void testMultiplication() {
-    b1 = rampfloat(0,2,n1);                 assertEqual(b1,mul(2,a1));
+    b1 = rampdouble(0,2,n1);                assertEqual(b1,mul(2,a1));
                                             assertEqual(b1,mul(a1,2));
-    b2 = rampfloat(0,2,20,n1,n2);           assertEqual(b2,mul(2,a2));
+    b2 = rampdouble(0,2,20,n1,n2);          assertEqual(b2,mul(2,a2));
                                             assertEqual(b2,mul(a2,2));
-    b3 = rampfloat(0,2,20,200,n1,n2,n3);    assertEqual(b3,mul(2,a3));
+    b3 = rampdouble(0,2,20,200,n1,n2,n3);   assertEqual(b3,mul(2,a3));
                                             assertEqual(b3,mul(a3,2));
 
-    b1 = new float[] {
-      pow(0.0f,2.0f),
-      pow(1.0f,2.0f),
-      pow(2.0f,2.0f),
-      pow(3.0f,2.0f)
+    b1 = new double[] {
+      pow(0.0d,2.0d),
+      pow(1.0d,2.0d),
+      pow(2.0d,2.0d),
+      pow(3.0d,2.0d)
     };
 
-    b2 = new float[n2][n1];     a2 = new float[n2][n1];
-    b3 = new float[n3][n2][n1]; a3 = new float[n3][n2][n1];
+    b2 = new double[n2][n1];     a2 = new double[n2][n1];
+    b3 = new double[n3][n2][n1]; a3 = new double[n3][n2][n1];
 
     for (int i2=0; i2<n2; ++i2) {
       b2[i2] = copy(b1);
@@ -299,9 +296,9 @@ public class ArrayMathTestFloat extends ArrayMathTest {
 
   @Test
   public void testNaturalLog() {
-    b1 = new float[] { Float.NEGATIVE_INFINITY,log(1),log(2),log(3) };
-    b2 = new float[n2][n1];     a2 = new float[n2][n1];
-    b3 = new float[n3][n2][n1]; a3 = new float[n3][n2][n1];
+    b1 = new double[] { Double.NEGATIVE_INFINITY,log(1),log(2),log(3) };
+    b2 = new double[n2][n1];     a2 = new double[n2][n1];
+    b3 = new double[n3][n2][n1]; a3 = new double[n3][n2][n1];
 
     for (int i2=0; i2<n2; ++i2) {
       b2[i2] = copy(b1);
@@ -313,16 +310,21 @@ public class ArrayMathTestFloat extends ArrayMathTest {
       a3[i3] = copy(a2);
     }
 
-    assertEqual(b1,log(a1));  assertEqual(a1,exp(b1));
-    assertEqual(b2,log(a2));  assertEqual(a2,exp(b2));
-    assertEqual(b3,log(a3));  assertEqual(a3,exp(b3));
+    assertAlmostEqual(b1,log(a1));
+    assertAlmostEqual(a1,exp(b1));
+
+    assertAlmostEqual(b2,log(a2));
+    assertAlmostEqual(a2,exp(b2));
+
+    assertAlmostEqual(b3,log(a3));
+    assertAlmostEqual(a3,exp(b3));
   }
 
   @Test
   public void testSquareRoot() {
-    b1 = new float[] { sqrt(0.0f), sqrt(1.0f), sqrt(2.0f), sqrt(3.0f) };
-    b2 = new float[n2][n1];     a2 = new float[n2][n1];
-    b3 = new float[n3][n2][n1]; a3 = new float[n3][n2][n1];
+    b1 = new double[] { sqrt(0.0d), sqrt(1.0d), sqrt(2.0d), sqrt(3.0d) };
+    b2 = new double[n2][n1];     a2 = new double[n2][n1];
+    b3 = new double[n3][n2][n1]; a3 = new double[n3][n2][n1];
 
     for (int i2=0; i2<n2; ++i2) {
       b2[i2] = copy(b1);
@@ -341,15 +343,15 @@ public class ArrayMathTestFloat extends ArrayMathTest {
 
   @Test
   public void testPow() {
-    b1 = new float[] {
-      pow(0.0f,2.0f),
-      pow(1.0f,2.0f),
-      pow(2.0f,2.0f),
-      pow(3.0f,2.0f)
+    b1 = new double[] {
+      pow(0.0d,2.0d),
+      pow(1.0d,2.0d),
+      pow(2.0d,2.0d),
+      pow(3.0d,2.0d)
     };
 
-    b2 = new float[n2][n1];     a2 = new float[n2][n1];
-    b3 = new float[n3][n2][n1]; a3 = new float[n3][n2][n1];
+    b2 = new double[n2][n1];     a2 = new double[n2][n1];
+    b3 = new double[n3][n2][n1]; a3 = new double[n3][n2][n1];
 
     for (int i2=0; i2<n2; ++i2) {
       b2[i2] = copy(b1);
@@ -361,15 +363,15 @@ public class ArrayMathTestFloat extends ArrayMathTest {
       a3[i3] = copy(a2);
     }
 
-    assertEqual(b1,pow(a1,2.0f)); assertAlmostEqual(a1,sqrt(b1));
-    assertEqual(b2,pow(a2,2.0f)); assertAlmostEqual(a2,sqrt(b2));
-    assertEqual(b3,pow(a3,2.0f)); assertAlmostEqual(a3,sqrt(b3));
+    assertEqual(b1,pow(a1,2.0d)); assertAlmostEqual(a1,sqrt(b1));
+    assertEqual(b2,pow(a2,2.0d)); assertAlmostEqual(a2,sqrt(b2));
+    assertEqual(b3,pow(a3,2.0d)); assertAlmostEqual(a3,sqrt(b3));
   }
 
   @Test
   public void testIndexAndValueMaxes() {
     int[] imax = {-1,-1,-1};
-    float rmax = max(a3,imax);
+    double rmax = max(a3,imax);
 
     assertTrue(rmax == a3[n3-1][n2-1][n1-1]);
     assertEq(n1-1,imax[0]);
@@ -380,7 +382,7 @@ public class ArrayMathTestFloat extends ArrayMathTest {
   @Test
   public void testIndexAndValueMins() {
     int[] imin = {-1,-1,-1};
-    float rmin = min(a3,imin);
+    double rmin = min(a3,imin);
 
     assertTrue(rmin==a3[0][0][0]);
     assertEq(0,imin[0]);
@@ -393,7 +395,7 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     assertTrue(isRegular(a2));
     assertTrue(isRegular(a3));
 
-    a2[0] = new float[3];
+    a2[0] = new double[3];
     a3[0] = a2;
 
     assertFalse(isRegular(a2));
@@ -419,43 +421,43 @@ public class ArrayMathTestFloat extends ArrayMathTest {
     assertFalse(isMonotonic(a1));
   }
 
-  protected static void assertOnlyContains(float val,float[][][] a) {
+  protected static void assertOnlyContains(double val,double[][][] a) {
     for (int i3=0; i3<a.length; ++i3)
       assertOnlyContains(val,a[i3]);
   }
 
-  protected static void assertOnlyContains(float val,float[][] a) {
+  protected static void assertOnlyContains(double val,double[][] a) {
     for (int i2=0; i2<a.length; ++i2)
       assertOnlyContains(val,a[i2]);
   }
 
-  protected static void assertOnlyContains(float val,float[] a) {
+  protected static void assertOnlyContains(double val,double[] a) {
     for (int i1=0; i1<a.length; ++i1)
       assertEquals(val,a[i1]);
   }
 
-  protected static void assertArraySize(float[][][] a,int n1,int n2,int n3) {
+  protected static void assertArraySize(double[][][] a,int n1,int n2,int n3) {
     assertEquals(n3,a.length);
     assertEquals(n2,a[0].length);
     assertEquals(n1,a[0][0].length);
   }
 
-  protected static void assertArraySize(float[][] a,int n1,int n2) {
+  protected static void assertArraySize(double[][] a,int n1,int n2) {
     assertEquals(n2,a.length);
     assertEquals(n1,a[0].length);
   }
 
-  protected static void assertArraySize(float[] a,int n) {
+  protected static void assertArraySize(double[] a,int n) {
     assertEquals(n,a.length);
   }
 
 
-  protected float[]     a1;
-  protected float[][]   a2;
-  protected float[][][] a3;
+  protected double[]     a1;
+  protected double[][]   a2;
+  protected double[][][] a3;
 
-  protected float[]     b1;
-  protected float[][]   b2;
-  protected float[][][] b3;
+  protected double[]     b1;
+  protected double[][]   b2;
+  protected double[][][] b3;
 
 }

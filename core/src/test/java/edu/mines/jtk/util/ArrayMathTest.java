@@ -962,23 +962,6 @@ public class ArrayMathTest {
 //////////////////////////////////////////////////////////////////////////////
 // protected
 
-  protected Object getMethod(
-    String methodName, ArrayMathTest obj, Object[] params)
-    throws SecurityException,
-           NoSuchMethodException,
-           IllegalArgumentException,
-           IllegalAccessException,
-           InvocationTargetException
-  {
-    int pn = params.length;
-    Class[] pcls = new Class[pn];
-    for (int i=0; i<pn; ++i) {
-      pcls[i] = params[i].getClass();
-    }
-    Method m = obj.getClass().getMethod(methodName, pcls);
-    return m.invoke(obj, params);
-  }
-
   protected static int n3;
   protected static int n2;
   protected static int n1;
@@ -1005,9 +988,44 @@ public class ArrayMathTest {
     assertTrue(equal(rx,ry));
   }
 
+  protected void assertEqual(double[] rx, double[] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(double[][] rx, double[][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(double[][][] rx, double[][][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+
   protected void assertAlmostEqual(float[][][] rx, float[][][] ry) {
     float tolerance = 100.0f*FLT_EPSILON;
     assertTrue(equal(tolerance,rx,ry));
+  }
+
+  protected void assertAlmostEqual(float[][] rx, float[][] ry) {
+    float tolerance = 100.0f*FLT_EPSILON;
+    assertTrue(equal(tolerance,rx,ry));
+  }
+
+  protected void assertAlmostEqual(float[] rx, float[] ry) {
+    float tolerance = 100.0f*FLT_EPSILON;
+    assertTrue(equal(tolerance,rx,ry));
+  }
+
+  protected void assertAlmostEqual(double[][][] rx, double[][][] ry) {
+    assertTrue(equal(1.0E-3,rx,ry));
+  }
+
+  protected void assertAlmostEqual(double[][] rx, double[][] ry) {
+    assertTrue(equal(1.0E-3,rx,ry));
+  }
+
+  protected void assertAlmostEqual(double[] rx, double[] ry) {
+    assertTrue(equal(1.0E-3,rx,ry));
   }
 
   protected void checkSearch(double[] a, double x) {
