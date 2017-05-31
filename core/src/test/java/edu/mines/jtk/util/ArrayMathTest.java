@@ -14,7 +14,6 @@ limitations under the License.
 ****************************************************************************/
 package edu.mines.jtk.util;
 
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static edu.mines.jtk.util.ArrayMath.*;
@@ -22,8 +21,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Random;
 
 /**
