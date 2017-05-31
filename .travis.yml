@@ -28,8 +28,8 @@ before_script:
 
 script:
   - "chmod +x gradlew"
-  - "./gradlew clean"
-  - "./gradlew build -x :core:signArchives"
+  - "gradle clean"
+  - "gradle build -x :core:signArchives"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
