@@ -152,165 +152,6 @@ public class ArrayMathTest {
   }
 
   @Test
-  public void testDoubleArrayInits() {
-    int n3 = 3, n2 = 5, n1 = 7;
-
-    double val = 1.0;
-
-    double[]     zd1 = filldouble(val,n1);
-    double[][]   zd2 = filldouble(val,n1,n2);
-    double[][][] zd3 = filldouble(val,n1,n2,n3);
-
-    assertEquals(n3,zd3.length);
-    assertEquals(n2,zd2.length);
-    assertEquals(n1,zd1.length);
-
-    assertEquals(n2,zd3[0].length);
-    assertEquals(n1,zd2[0].length);
-
-    assertEquals(n1,zd3[0][0].length);
-
-    for (int i1=0; i1<n1; ++i1) {
-      assertEq(val,zd3[0][0][i1]);
-      assertEq(val,zd2[0][i1]);
-      assertEq(val,zd1[i1]);
-    }
-
-    zero(zd1); zero(zd2); zero(zd3);
-
-    assertArrayEquals(zd1, zerodouble(n1), FLT_EPSILON);
-    assertArrayEquals(zd2, zerodouble(n1,n2));
-    assertArrayEquals(zd3, zerodouble(n1,n2,n3));
-
-    // Rand
-    zd1 = randdouble(2*n1);
-    zd2 = randdouble(2*n1,2*n2);
-    zd3 = randdouble(2*n1,2*n2,2*n3);
-
-    assertEquals(2*n3,zd3.length);
-    assertEquals(2*n2,zd2.length);
-    assertEquals(2*n2,zd3[0].length);
-    assertEquals(2*n1,zd1.length);
-    assertEquals(2*n1,zd2[0].length);
-    assertEquals(2*n1,zd3[0][0].length);
-
-    rand(zd1); rand(zd2); rand(zd3);
-
-    assertEquals(2*n3,zd3.length);
-    assertEquals(2*n2,zd2.length);
-    assertEquals(2*n2,zd3[0].length);
-    assertEquals(2*n1,zd1.length);
-    assertEquals(2*n1,zd2[0].length);
-    assertEquals(2*n1,zd3[0][0].length);
-  }
-
-
-
-  @Test
-  public void testLongArraysInits() {
-    int n3 = 3, n2 = 5, n1 = 7;
-
-    long val = 1L;
-
-    long[]     zl1 = filllong(val,n1);
-    long[][]   zl2 = filllong(val,n1,n2);
-    long[][][] zl3 = filllong(val,n1,n2,n3);
-
-    assertEquals(n3,zl3.length);
-    assertEquals(n2,zl2.length);
-    assertEquals(n1,zl1.length);
-
-    assertEquals(n2,zl3[0].length);
-    assertEquals(n1,zl2[0].length);
-
-    assertEquals(n1,zl3[0][0].length);
-
-    for (int i1=0; i1<n1; ++i1) {
-      assertEq(val,zl3[0][0][i1]);
-      assertEq(val,zl2[0][i1]);
-      assertEq(val,zl1[i1]);
-    }
-
-    zero(zl1); zero(zl2); zero(zl3);
-
-    assertArrayEquals(zl1, zerolong(n1));
-    assertArrayEquals(zl2, zerolong(n1,n2));
-    assertArrayEquals(zl3, zerolong(n1,n2,n3));
-
-    // Rand
-    zl1 = randlong(2*n1);
-    zl2 = randlong(2*n1,2*n2);
-    zl3 = randlong(2*n1,2*n2,2*n3);
-
-    assertEquals(2*n3,zl3.length);
-    assertEquals(2*n2,zl2.length);
-    assertEquals(2*n2,zl3[0].length);
-    assertEquals(2*n1,zl1.length);
-    assertEquals(2*n1,zl2[0].length);
-    assertEquals(2*n1,zl3[0][0].length);
-
-    rand(zl1); rand(zl2); rand(zl3);
-
-    assertEquals(2*n3,zl3.length);
-    assertEquals(2*n2,zl2.length);
-    assertEquals(2*n2,zl3[0].length);
-    assertEquals(2*n1,zl1.length);
-    assertEquals(2*n1,zl2[0].length);
-    assertEquals(2*n1,zl3[0][0].length);
-  }
-
-  @Test
-  public void testIntArraysInits() {
-    int n3 = 3, n2 = 5, n1 = 7;
-
-    int val = 1;
-
-    int[]     zi1 = fillint(val,n1);
-    int[][]   zi2 = fillint(val,n1,n2);
-    int[][][] zi3 = fillint(val,n1,n2,n3);
-
-    assertEquals(n3,zi3.length);
-    assertEquals(n2,zi2.length);
-    assertEquals(n2,zi3[0].length);
-    assertEquals(n1,zi1.length);
-    assertEquals(n1,zi2[0].length);
-    assertEquals(n1,zi3[0][0].length);
-
-    for (int i1=0; i1<n1; ++i1) {
-      assertEq(val,zi3[0][0][i1]);
-      assertEq(val,zi2[0][i1]);
-      assertEq(val,zi1[i1]);
-    }
-
-    zero(zi1); zero(zi2); zero(zi3);
-
-    assertArrayEquals(zi1, zeroint(n1));
-    assertArrayEquals(zi2, zeroint(n1,n2));
-    assertArrayEquals(zi3, zeroint(n1,n2,n3));
-
-    // Rand
-    zi1 = randint(2*n1);
-    zi2 = randint(2*n1,2*n2);
-    zi3 = randint(2*n1,2*n2,2*n3);
-
-    assertEquals(2*n3,zi3.length);
-    assertEquals(2*n2,zi2.length);
-    assertEquals(2*n2,zi3[0].length);
-    assertEquals(2*n1,zi1.length);
-    assertEquals(2*n1,zi2[0].length);
-    assertEquals(2*n1,zi3[0][0].length);
-
-    rand(zi1); rand(zi2); rand(zi3);
-
-    assertEquals(2*n3,zi3.length);
-    assertEquals(2*n2,zi2.length);
-    assertEquals(2*n2,zi3[0].length);
-    assertEquals(2*n1,zi1.length);
-    assertEquals(2*n1,zi2[0].length);
-    assertEquals(2*n1,zi3[0][0].length);
-  }
-
-  @Test
   public void testShortArraysInits() {
     int n3 = 3, n2 = 5, n1 = 7;
 
@@ -377,8 +218,6 @@ public class ArrayMathTest {
 
   }
 
-
-
   @Test
   public void testSort() {
     Random r = new Random(314159);
@@ -434,10 +273,6 @@ public class ArrayMathTest {
       }
     }
   }
-
-
-
-
 
   @Test
   public void testCfloat1() {
@@ -976,6 +811,18 @@ public class ArrayMathTest {
     assertEquals(expected,actual,small);
   }
 
+  protected void assertEq(byte expected, byte actual) {
+    assertEquals(expected,actual);
+  }
+
+  protected void assertEq(int expected, int actual) {
+    assertEquals(expected,actual);
+  }
+
+  protected void assertEq(long expected, long actual) {
+    assertEquals(expected,actual);
+  }
+
   protected void assertEqual(float[] rx, float[] ry) {
     assertTrue(equal(rx,ry));
   }
@@ -1000,32 +847,76 @@ public class ArrayMathTest {
     assertTrue(equal(rx,ry));
   }
 
+  protected void assertEqual(int[] rx, int[] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(int[][] rx, int[][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(int[][][] rx, int[][][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(long[] rx, long[] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(long[][] rx, long[][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(long[][][] rx, long[][][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(short[] rx, short[] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(short[][] rx, short[][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(short[][][] rx, short[][][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(byte[] rx, byte[] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(byte[][] rx, byte[][] ry) {
+    assertTrue(equal(rx,ry));
+  }
+
+  protected void assertEqual(byte[][][] rx, byte[][][] ry) {
+    assertTrue(equal(rx,ry));
+  }
 
   protected void assertAlmostEqual(float[][][] rx, float[][][] ry) {
-    float tolerance = 100.0f*FLT_EPSILON;
-    assertTrue(equal(tolerance,rx,ry));
+    assertTrue(equal(FLT_TOLERANCE,rx,ry));
   }
 
   protected void assertAlmostEqual(float[][] rx, float[][] ry) {
-    float tolerance = 100.0f*FLT_EPSILON;
-    assertTrue(equal(tolerance,rx,ry));
+    assertTrue(equal(FLT_TOLERANCE,rx,ry));
   }
 
   protected void assertAlmostEqual(float[] rx, float[] ry) {
-    float tolerance = 100.0f*FLT_EPSILON;
-    assertTrue(equal(tolerance,rx,ry));
+    assertTrue(equal(FLT_TOLERANCE,rx,ry));
   }
 
   protected void assertAlmostEqual(double[][][] rx, double[][][] ry) {
-    assertTrue(equal(1.0E-3,rx,ry));
+    assertTrue(equal(DBL_TOLERANCE,rx,ry));
   }
 
   protected void assertAlmostEqual(double[][] rx, double[][] ry) {
-    assertTrue(equal(1.0E-3,rx,ry));
+    assertTrue(equal(DBL_TOLERANCE,rx,ry));
   }
 
   protected void assertAlmostEqual(double[] rx, double[] ry) {
-    assertTrue(equal(1.0E-3,rx,ry));
+    assertTrue(equal(DBL_TOLERANCE,rx,ry));
   }
 
   protected void checkSearch(double[] a, double x) {
@@ -1094,4 +985,6 @@ public class ArrayMathTest {
       assertTrue(x[i2[j-1]]<=x[i2[j]]);
   }
 
+  private static final float FLT_TOLERANCE = 1.0E-4f;
+  private static final double DBL_TOLERANCE = 1.0E-4d;
 }

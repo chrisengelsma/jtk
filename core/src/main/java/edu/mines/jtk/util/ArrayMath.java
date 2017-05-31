@@ -115,7 +115,7 @@ import java.util.Random;
  * etc.
  * @see java.lang.Math
  * @author Dave Hale and Chris Engelsma, Colorado School of Mines
- * @version 2009.06.23
+ * @version 2017.05.31
  */
 public class ArrayMath {
 
@@ -7955,7 +7955,8 @@ public class ArrayMath {
     return equal(tolerance,cx,cy);
   }
   private static boolean equal(float tolerance, float ra, float rb) {
-    return (ra<rb)?rb-ra<=tolerance:ra-rb<=tolerance;
+    float val = abs(ra-rb);
+    return val<=tolerance || Float.isNaN(val);
   }
 
   /**
@@ -8122,7 +8123,8 @@ public class ArrayMath {
     return equal(tolerance,cx,cy);
   }
   private static boolean equal(double tolerance, double ra, double rb) {
-    return (ra<rb)?rb-ra<=tolerance:ra-rb<=tolerance;
+    double val = abs(ra-rb);
+    return val<=tolerance || Double.isNaN(val);
   }
 
   ///////////////////////////////////////////////////////////////////////////

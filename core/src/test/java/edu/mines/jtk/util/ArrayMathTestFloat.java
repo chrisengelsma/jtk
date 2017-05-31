@@ -16,6 +16,7 @@ package edu.mines.jtk.util;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.util.Random;
 
 import static edu.mines.jtk.util.ArrayMath.*;
 import static edu.mines.jtk.util.ArrayMath.transpose;
@@ -27,7 +28,7 @@ import static org.testng.Assert.assertTrue;
  * Tests simple float array operations in
  * {@link edu.mines.jtk.util.ArrayMath}.
  * @author Chris Engelsma
- * @version 2017.05.30
+ * @version 2017.05.31
  */
 public class ArrayMathTestFloat extends ArrayMathTest {
 
@@ -378,14 +379,40 @@ public class ArrayMathTestFloat extends ArrayMathTest {
   }
 
   @Test
-  public void testIndexAndValueMins() {
-    int[] imin = {-1,-1,-1};
-    float rmin = min(a3,imin);
+  public void testMinMax() {
+    Random r = new Random();
+    float min = -1.0f;
+    float max = 1000.0f;
+    int j3 = r.nextInt(n3-1)+1;
+    int j2 = r.nextInt(n2-1)+1;
+    int j1 = r.nextInt(n1-1)+1;
+    int k1 = r.nextInt(n1-1)+1;
+    while (j1==k1) k1 = r.nextInt(n1-1)+1;
 
-    assertTrue(rmin==a3[0][0][0]);
-    assertEq(0,imin[0]);
-    assertEq(0,imin[1]);
-    assertEq(0,imin[2]);
+    int[] imin1 = new int[1]; int[] imax1 = new int[1];
+    int[] imin2 = new int[2]; int[] imax2 = new int[2];
+    int[] imin3 = new int[3]; int[] imax3 = new int[3];
+
+    a3[j3][j2][j1] = min; a3[j3][j2][k1] = max;
+    a2[j2][j1]     = min; a2[j2][k1]     = max;
+    a1[j1]         = min; a1[k1]         = max;
+
+    float min3 = min(a3,imin3), max3 = max(a3,imax3);
+    float min2 = min(a2,imin2), max2 = max(a2,imax2);
+    float min1 = min(a1,imin1), max1 = max(a1,imax1);
+
+    assertEq(min,min3);    assertEq(min,min2);    assertEq(min,min1);
+    assertEq(j1,imin3[0]); assertEq(j1,imin2[0]); assertEq(j1,imin1[0]);
+    assertEq(j2,imin3[1]); assertEq(j2,imin2[1]);
+    assertEq(j3,imin3[2]);
+
+    assertEq(max,max3);    assertEq(max,max2);    assertEq(max,max1);
+    assertEq(k1,imax3[0]); assertEq(k1,imax2[0]); assertEq(k1,imax1[0]);
+    assertEq(j2,imax3[1]); assertEq(j2,imax2[1]);
+    assertEq(j3,imax3[2]);
+
+    assertEq(max,max(a3)); assertEq(max,max(a2)); assertEq(max,max(a1));
+    assertEq(min,min(a3)); assertEq(min,min(a2)); assertEq(min,min(a1));
   }
 
   @Test
