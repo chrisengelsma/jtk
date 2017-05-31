@@ -339,9 +339,9 @@ public class ArrayMathTestDouble extends ArrayMathTest {
       a3[i3] = copy(a2);
     }
 
-    assertEqual(b1,sqrt(a1));  assertAlmostEqual(a1,mul(b1,b1));
-    assertEqual(b2,sqrt(a2));  assertAlmostEqual(a2,mul(b2,b2));
-    assertEqual(b3,sqrt(a3));  assertAlmostEqual(a3,mul(b3,b3));
+    assertAlmostEqual(b1,sqrt(a1));  assertAlmostEqual(a1,mul(b1,b1));
+    assertAlmostEqual(b2,sqrt(a2));  assertAlmostEqual(a2,mul(b2,b2));
+    assertAlmostEqual(b3,sqrt(a3));  assertAlmostEqual(a3,mul(b3,b3));
   }
 
   @Test
@@ -366,9 +366,9 @@ public class ArrayMathTestDouble extends ArrayMathTest {
       a3[i3] = copy(a2);
     }
 
-    assertEqual(b1,pow(a1,2.0d)); assertAlmostEqual(a1,sqrt(b1));
-    assertEqual(b2,pow(a2,2.0d)); assertAlmostEqual(a2,sqrt(b2));
-    assertEqual(b3,pow(a3,2.0d)); assertAlmostEqual(a3,sqrt(b3));
+    assertAlmostEqual(b1,pow(a1,2.0d)); assertAlmostEqual(a1,sqrt(b1));
+    assertAlmostEqual(b2,pow(a2,2.0d)); assertAlmostEqual(a2,sqrt(b2));
+    assertAlmostEqual(b3,pow(a3,2.0d)); assertAlmostEqual(a3,sqrt(b3));
   }
 
   @Test
