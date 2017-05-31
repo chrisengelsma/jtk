@@ -130,50 +130,50 @@ public class ArrayMathTestLong extends ArrayMathTest {
     assertEqual(b2,a2);
     assertEqual(b3,a3);
 
-    b1 = copy(n1 - 1,a1);
-    b2 = copy(n1 - 1,n2 - 1,a2);
-    b3 = copy(n1 - 1,n2 - 1,n3 - 1,a3);
-    assertEqual(b1,ramplong(0,1,n1 - 1));
-    assertEqual(b2,ramplong(0,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,ramplong(0,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    b1 = copy(n1-1,a1);
+    b2 = copy(n1-1,n2-1,a2);
+    b3 = copy(n1-1,n2-1,n3-1,a3);
+    assertEqual(b1,ramplong(0L,1L,n1-1));
+    assertEqual(b2,ramplong(0L,1L,10L,n1-1,n2-1));
+    assertEqual(b3,ramplong(0L,1L,10L,100L,n1-1,n2-1,n3-1));
 
-    copy(n1 - 1,a1,b1);
-    copy(n1 - 1,n2 - 1,a2,b2);
-    copy(n1 - 1,n2 - 1,n3 - 1,a3,b3);
-    assertEqual(b1,ramplong(0,1,n1 - 1));
-    assertEqual(b2,ramplong(0,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,ramplong(0,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    copy(n1-1,a1,b1);
+    copy(n1-1,n2-1,a2,b2);
+    copy(n1-1,n2-1,n3-1,a3,b3);
+    assertEqual(b1,ramplong(0L,1L,n1-1));
+    assertEqual(b2,ramplong(0L,1L,10L,n1-1,n2-1));
+    assertEqual(b3,ramplong(0L,1L,10L,100L,n1-1,n2-1,n3-1));
 
-    b1 = copy(n1 - 1,1,a1);
-    b2 = copy(n1 - 2,n2 - 1,2,1,a2);
-    b3 = copy(n1 - 3,n2 - 2,n3 - 1,3,2,1,a3);
-    assertEqual(b1,ramplong(1,1,n1 - 1));
-    assertEqual(b2,ramplong(12,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,ramplong(123,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    b1 = copy(n1-1,1,a1);
+    b2 = copy(n1-2,n2-1,2,1,a2);
+    b3 = copy(n1-3,n2-2,n3-1,3,2,1,a3);
+    assertEqual(b1,ramplong(1L,1L,n1-1));
+    assertEqual(b2,ramplong(12L,1L,10L,n1-1,n2-1));
+    assertEqual(b3,ramplong(123L,1L,10L,100L,n1-1,n2-1,n3-1));
 
-    copy(n1 - 1,1,a1,0,b1);
-    copy(n1 - 2,n2 - 1,2,1,a2,0,0,b2);
-    copy(n1 - 3,n2 - 2,n3 - 1,3,2,1,a3,0,0,0,b3);
-    assertEqual(b1,ramplong(1,1,n1 - 1));
-    assertEqual(b2,ramplong(12,1,10,n1 - 1,n2 - 1));
-    assertEqual(b3,ramplong(123,1,10,100,n1 - 1,n2 - 1,n3 - 1));
+    copy(n1-1,1,a1,0,b1);
+    copy(n1-2,n2-1,2,1,a2,0,0,b2);
+    copy(n1-3,n2-2,n3-1,3,2,1,a3,0,0,0,b3);
+    assertEqual(b1,ramplong(1L,1L,n1-1));
+    assertEqual(b2,ramplong(12L,1L,10L,n1-1,n2-1));
+    assertEqual(b3,ramplong(123L,1L,10L,100L,n1-1,n2-1,n3-1));
 
-    b1 = copy(n1 / 2,0,2,a1);
-    b2 = copy(n1 / 2,n2 / 2,0,0,2,2,a2);
-    b3 = copy(n1 / 2,n2 / 2,n3 / 2,0,0,0,2,2,2,a3);
-    assertEqual(b1,ramplong(0,2,n1 / 2));
-    assertEqual(b2,ramplong(0,2,20,n1 / 2,n2 / 2));
-    assertEqual(b3,ramplong(0,2,20,200,n1 / 2,n2 / 2,n3 / 2));
+    b1 = copy(n1/2,0,2,a1);
+    b2 = copy(n1/2,n2/2,0,0,2,2,a2);
+    b3 = copy(n1/2,n2/2,n3/2,0,0,0,2,2,2,a3);
+    assertEqual(b1,ramplong(0L,2L,n1/2));
+    assertEqual(b2,ramplong(0L,2L,20L,n1/2,n2/2));
+    assertEqual(b3,ramplong(0L,2L,20L,200L,n1/2,n2/2,n3/2));
 
     b1 = copy(a1);
     b2 = copy(a2);
     b3 = copy(a3);
-    copy(n1 - 1,1,a1,1,b1);
-    copy(n1 - 2,n2 - 1,2,1,a2,2,1,b2);
-    copy(n1 - 3,n2 - 2,n3 - 1,3,2,1,a3,3,2,1,b3);
-    assertEqual(b1,ramplong(0,1,n1));
-    assertEqual(b2,ramplong(0,1,10,n1,n2));
-    assertEqual(b3,ramplong(0,1,10,100,n1,n2,n3));
+    copy(n1-1,1,a1,1,b1);
+    copy(n1-2,n2-1,2,1,a2,2,1,b2);
+    copy(n1-3,n2-2,n3-1,3,2,1,a3,3,2,1,b3);
+    assertEqual(b1,ramplong(0L,1L,n1));
+    assertEqual(b2,ramplong(0L,1L,10L,n1,n2));
+    assertEqual(b3,ramplong(0L,1L,10L,100L,n1,n2,n3));
   }
 
   @Test
