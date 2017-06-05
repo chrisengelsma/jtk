@@ -17,6 +17,8 @@ package edu.mines.jtk.util;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 import static edu.mines.jtk.util.ArrayMath.*;
 import static org.testng.Assert.*;
 
@@ -198,10 +200,12 @@ public class ArrayMathTestByte extends ArrayMathTest {
   public void testMinMax() {
     byte min = (byte)(-128);
     byte max = (byte)( 127);
-    int j3 = 0;
-    int j2 = 0;
-    int j1 = 0;
-    int k1 = n1-1;
+    Random r = new Random();
+    int j3 = r.nextInt(n3-1)+1;
+    int j2 = r.nextInt(n2-1)+1;
+    int j1 = r.nextInt(n1-1)+1;
+    int k1 = r.nextInt(n1-1)+1;
+    while (j1==k1) k1 = r.nextInt(n1-1)+1;
 
     int[] imin1 = new int[1]; int[] imax1 = new int[1];
     int[] imin2 = new int[2]; int[] imax2 = new int[2];
