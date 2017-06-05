@@ -266,43 +266,43 @@ public class ArrayMathTestByte extends ArrayMathTest {
     assertFalse(isMonotonic(a1));
   }
 
-  protected static void assertOnlyContains(byte val,byte[][][] a) {
+  private static void assertOnlyContains(byte val,byte[][][] a) {
     for (int i3=0; i3<a.length; ++i3)
       assertOnlyContains(val,a[i3]);
   }
 
-  protected static void assertOnlyContains(byte val,byte[][] a) {
+  private static void assertOnlyContains(byte val,byte[][] a) {
     for (int i2=0; i2<a.length; ++i2)
       assertOnlyContains(val,a[i2]);
   }
 
-  protected static void assertOnlyContains(byte val,byte[] a) {
+  private static void assertOnlyContains(byte val,byte[] a) {
     for (int i1=0; i1<a.length; ++i1)
       assertEquals(val,a[i1]);
   }
 
-  protected static void assertArraySize(byte[][][] a,int n1,int n2,int n3) {
+  private static void assertArraySize(byte[][][] a,int n1,int n2,int n3) {
     assertEquals(n3,a.length);
     assertEquals(n2,a[0].length);
     assertEquals(n1,a[0][0].length);
   }
 
-  protected static void assertArraySize(byte[][] a,int n1,int n2) {
+  private static void assertArraySize(byte[][] a,int n1,int n2) {
     assertEquals(n2,a.length);
     assertEquals(n1,a[0].length);
   }
 
-  protected static void assertArraySize(byte[] a,int n) {
+  private static void assertArraySize(byte[] a,int n) {
     assertEquals(n,a.length);
   }
 
 
-  protected byte[]     a1;
-  protected byte[][]   a2;
-  protected byte[][][] a3;
+  private byte[]     a1;
+  private byte[][]   a2;
+  private byte[][][] a3;
 
-  protected byte[]     b1;
-  protected byte[][]   b2;
-  protected byte[][][] b3;
+  private byte[]     b1;
+  private byte[][]   b2;
+  private byte[][][] b3;
 
 }

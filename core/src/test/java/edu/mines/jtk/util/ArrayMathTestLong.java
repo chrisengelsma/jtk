@@ -274,43 +274,43 @@ public class ArrayMathTestLong extends ArrayMathTest {
     assertFalse(isMonotonic(a1));
   }
 
-  protected static void assertOnlyContains(long val,long[][][] a) {
+  private static void assertOnlyContains(long val,long[][][] a) {
     for (int i3=0; i3<a.length; ++i3)
       assertOnlyContains(val,a[i3]);
   }
 
-  protected static void assertOnlyContains(long val,long[][] a) {
+  private static void assertOnlyContains(long val,long[][] a) {
     for (int i2=0; i2<a.length; ++i2)
       assertOnlyContains(val,a[i2]);
   }
 
-  protected static void assertOnlyContains(long val,long[] a) {
+  private static void assertOnlyContains(long val,long[] a) {
     for (int i1=0; i1<a.length; ++i1)
       assertEquals(val,a[i1]);
   }
 
-  protected static void assertArraySize(long[][][] a,int n1,int n2,int n3) {
+  private static void assertArraySize(long[][][] a,int n1,int n2,int n3) {
     assertEquals(n3,a.length);
     assertEquals(n2,a[0].length);
     assertEquals(n1,a[0][0].length);
   }
 
-  protected static void assertArraySize(long[][] a,int n1,int n2) {
+  private static void assertArraySize(long[][] a,int n1,int n2) {
     assertEquals(n2,a.length);
     assertEquals(n1,a[0].length);
   }
 
-  protected static void assertArraySize(long[] a,int n) {
+  private static void assertArraySize(long[] a,int n) {
     assertEquals(n,a.length);
   }
 
 
-  protected long[]     a1;
-  protected long[][]   a2;
-  protected long[][][] a3;
+  private long[]     a1;
+  private long[][]   a2;
+  private long[][][] a3;
 
-  protected long[]     b1;
-  protected long[][]   b2;
-  protected long[][][] b3;
+  private long[]     b1;
+  private long[][]   b2;
+  private long[][][] b3;
 
 }
