@@ -203,6 +203,10 @@ public class ArrayMathByteTest {
 
   @Test
   public void testMinMax() {
+    a1 = rampbyte((byte)0,(byte)1,n1);
+    a2 = rampbyte((byte)0,(byte)1,(byte)1,n1,n2);
+    a3 = rampbyte((byte)0,(byte)1,(byte)1,(byte)1,n1,n2,n3);
+
     byte min = (byte)(-128);
     byte max = (byte)( 127);
     Random r = new Random();
@@ -219,6 +223,10 @@ public class ArrayMathByteTest {
     a3[j3][j2][j1] = min; a3[j3][j2][k1] = max;
     a2[j2][j1]     = min; a2[j2][k1]     = max;
     a1[j1]         = min; a1[k1]         = max;
+
+    dump(a3);
+    dump(a2);
+    dump(a1);
 
     byte min3 = min(a3,imin3); byte max3 = max(a3,imax3);
     byte min2 = min(a2,imin2); byte max2 = max(a2,imax2);

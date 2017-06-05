@@ -805,7 +805,7 @@ public class ArrayMathTest {
   }
 
   protected static void assertEq(byte expected, byte actual) {
-    assertEquals(expected,actual);
+    assertTrue(expected==actual);
   }
 
   protected static void assertEq(int expected, int actual) {
