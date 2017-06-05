@@ -23,8 +23,7 @@ import static edu.mines.jtk.util.ArrayMath.*;
 import static org.testng.Assert.*;
 
 /**
- * Tests simple long array operations in
- * {@link ArrayMath}.
+ * Tests long array operations in {@link edu.mines.jtk.util.ArrayMath}.
  * @author Chris Engelsma
  * @version 2017.05.31
  */
@@ -32,7 +31,6 @@ public class ArrayMathTestLong extends ArrayMathTest {
 
   @BeforeMethod
   public void setUp() {
-    n3 = 8; n2 = 6; n1 = 4;
     a1 = ramplong(0L,1L,n1);
     a2 = ramplong(0L,1L,10L,n1,n2);
     a3 = ramplong(0L,1L,10L,100L,n1,n2,n3);

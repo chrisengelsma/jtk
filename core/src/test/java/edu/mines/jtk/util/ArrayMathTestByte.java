@@ -17,14 +17,11 @@ package edu.mines.jtk.util;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Random;
-
 import static edu.mines.jtk.util.ArrayMath.*;
 import static org.testng.Assert.*;
 
 /**
- * Tests simple byte array operations in
- * {@link ArrayMath}.
+ * Tests byte array operations in {@link edu.mines.jtk.util.ArrayMath}.
  * @author Chris Engelsma
  * @version 2017.05.31
  */
@@ -32,7 +29,6 @@ public class ArrayMathTestByte extends ArrayMathTest {
 
   @BeforeMethod
   public void setUp() {
-    n3 = 8; n2 = 6; n1 = 4;
     a1 = rampbyte((byte)0,(byte)1,n1);
     a2 = rampbyte((byte)0,(byte)1,(byte)10,n1,n2);
     a3 = rampbyte((byte)0,(byte)1,(byte)10,(byte)100,n1,n2,n3);
@@ -200,14 +196,12 @@ public class ArrayMathTestByte extends ArrayMathTest {
 
   @Test
   public void testMinMax() {
-    Random r = new Random();
     byte min = (byte)(-128);
     byte max = (byte)( 127);
-    int j3 = r.nextInt(n3-1)+1;
-    int j2 = r.nextInt(n2-1)+1;
-    int j1 = r.nextInt(n1-1)+1;
-    int k1 = r.nextInt(n1-1)+1;
-    while (j1==k1) k1 = r.nextInt(n1-1)+1;
+    int j3 = 0;
+    int j2 = 0;
+    int j1 = 0;
+    int k1 = n1-1;
 
     int[] imin1 = new int[1]; int[] imax1 = new int[1];
     int[] imin2 = new int[2]; int[] imax2 = new int[2];

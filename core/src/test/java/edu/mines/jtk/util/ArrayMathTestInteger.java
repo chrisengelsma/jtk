@@ -23,8 +23,7 @@ import static edu.mines.jtk.util.ArrayMath.*;
 import static org.testng.Assert.*;
 
 /**
- * Tests simple int array operations in
- * {@link ArrayMath}.
+ * Tests int array operations in {@link edu.mines.jtk.util.ArrayMath}.
  * @author Chris Engelsma
  * @version 2017.05.31
  */
@@ -32,7 +31,6 @@ public class ArrayMathTestInteger extends ArrayMathTest {
 
   @BeforeMethod
   public void setUp() {
-    n3 = 8; n2 = 6; n1 = 4;
     a1 = rampint(0,1,n1);
     a2 = rampint(0,1,10,n1,n2);
     a3 = rampint(0,1,10,100,n1,n2,n3);

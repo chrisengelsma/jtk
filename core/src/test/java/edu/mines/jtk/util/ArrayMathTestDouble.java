@@ -23,8 +23,7 @@ import static edu.mines.jtk.util.ArrayMath.*;
 import static org.testng.Assert.*;
 
 /**
- * Tests simple double array operations in
- * {@link edu.mines.jtk.util.ArrayMath}.
+ * Tests double array operations in {@link edu.mines.jtk.util.ArrayMath}.
  * @author Chris Engelsma
  * @version 2017.05.31
  */
@@ -32,7 +31,6 @@ public class ArrayMathTestDouble extends ArrayMathTest {
 
   @BeforeMethod
   public void setUp() {
-    n3 = 8; n2 = 6; n1 = 4;
     a1 = rampdouble(0d,1d,n1);
     a2 = rampdouble(0d,1d,10d,n1,n2);
     a3 = rampdouble(0d,1d,10d,100d,n1,n2,n3);
