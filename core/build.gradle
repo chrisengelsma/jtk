@@ -5,7 +5,7 @@ apply plugin: 'maven'
 apply plugin: 'jacoco'
 apply plugin: 'signing'
 
-jar.baseName = 'edu.mines.jtk'
+jar.baseName = 'edu-mines-jtk'
 
 // tag::dependencies[]
 dependencies {
@@ -21,7 +21,7 @@ dependencies {
 // tag::distributions[]
 distributions {
   main {
-    baseName = 'edu.mines.jtk'
+    baseName = 'edu-mines-jtk-all'
   }
 }
 // end::distributions[]
